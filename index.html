@@ -1115,11 +1115,33 @@ function rate(n) {
   document.getElementById('ratingValue').value = n + " Stars";
 }
 
-// Form Submit (AJAX)
+// Form Submit (AJAX) with Strict Email Check
 function submitFb(e) {
   e.preventDefault(); // Page refresh hone se roke
   
   const form = e.target;
+  // User ne jo email daala hai usko nikalna aur lowercase karna
+  const emailInput = form.querySelector('input[name="Email"]').value.toLowerCase();
+  
+  // 1. Strict Format Check (Regex) - Asli format check karna
+  const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+  if (!emailRegex.test(emailInput)) {
+    alert("Please sahi email format daalein (jaise naam@gmail.com).");
+    return;
+  }
+
+  // 2. Fake aur Dummy Domains ko block karna
+  const blockedDomains = ['test.com', 'example.com', 'dummy.com', 'asdf.com', '123.com', 'fake.com', 'mail.com'];
+  const domainParts = emailInput.split('@');
+  
+  if (domainParts.length === 2) {
+    const domain = domainParts[1];
+    if (blockedDomains.includes(domain)) {
+      alert("Please ek real email address daaliye! Ye dummy email allow nahi hai.");
+      return; // Agar fake hai toh form submit nahi hoga
+    }
+  }
+
   const btn = document.getElementById('submitBtn');
   const snack = document.getElementById('snack');
   
