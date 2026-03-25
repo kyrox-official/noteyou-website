@@ -237,25 +237,23 @@ ul { list-style:none; }
 .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:48px; }
 .fcard {
   background:var(--surface); border-radius:var(--r-lg);
-  border:1px solid var(--border); padding:24px 20px;
+  border:1px solid var(--border); padding:28px 24px;
   transition:box-shadow .25s, transform .25s;
-  display:flex; flex-direction:column; overflow:hidden; min-width:0;
 }
 .fcard:hover { box-shadow:var(--sh-3); transform:translateY(-4px); }
 .fcard-icon {
-  width:44px; height:44px; border-radius:var(--r-md);
+  width:48px; height:48px; border-radius:var(--r-md);
   background:var(--p-light); color:var(--p);
   display:flex; align-items:center; justify-content:center;
-  margin-bottom:14px; flex-shrink:0;
+  margin-bottom:18px;
 }
-.fcard-icon .material-icons-round { font-size:22px; }
-.fcard-title { font-size:.92rem; font-weight:700; color:var(--on-surf); margin-bottom:7px; word-break:break-word; }
-.fcard-desc { font-size:.82rem; color:var(--muted); line-height:1.68; flex:1; word-break:break-word; }
+.fcard-icon .material-icons-round { font-size:24px; }
+.fcard-title { font-size:1rem; font-weight:700; color:var(--on-surf); margin-bottom:8px; }
+.fcard-desc { font-size:.85rem; color:var(--muted); line-height:1.72; }
 .fcard-tag {
-  margin-top:12px; display:inline-flex; align-items:center; gap:5px;
-  font-size:.68rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  margin-top:14px; display:inline-flex; align-items:center; gap:5px;
+  font-size:.7rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
   color:var(--p); background:var(--p-light); padding:4px 10px; border-radius:var(--r-full);
-  align-self:flex-start; white-space:nowrap;
 }
 .fcard-tag .material-icons-round { font-size:13px; }
 
@@ -556,7 +554,6 @@ ul { list-style:none; }
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav" id="nav">
   <div class="container">
     <div class="nav-inner">
@@ -583,17 +580,16 @@ ul { list-style:none; }
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-orb hero-orb-1"></div>
   <div class="hero-orb hero-orb-2"></div>
   <div class="container">
     <div class="hero-inner">
       <div class="hero-pill reveal">
-        <div class="pill-dot"></div>Android App · v1.0 Out Now
+        <div class="pill-dot"></div>Free Android App · v1.0 Out Now
       </div>
       <h1 class="hero-title reveal">Notes that feel<br/><em>truly yours</em></h1>
-      <p class="hero-desc reveal">Write offline or sync to the cloud. Choose your font, set your theme, work your way. NoteYou adapts to you — not the other way around.</p>
+      <p class="hero-desc reveal">Write offline or sync to the cloud. Pick your fonts, personalize your theme. NoteYou is powerful, beautiful, and completely yours.</p>
       <div class="hero-ctas reveal">
         <a href="#download" class="btn btn-primary">
           <span class="material-icons-round">download</span>Download APK
@@ -606,16 +602,15 @@ ul { list-style:none; }
         </a>
       </div>
       <div class="hero-stats reveal">
-        <div class="hstat"><div class="hstat-n">Free</div><div class="hstat-l">To Download</div></div>
-        <div class="hstat"><div class="hstat-n">8</div><div class="hstat-l">Unique Fonts</div></div>
+        <div class="hstat"><div class="hstat-n">Free</div><div class="hstat-l">Always</div></div>
+        <div class="hstat"><div class="hstat-n">20+</div><div class="hstat-l">Fonts</div></div>
         <div class="hstat"><div class="hstat-n">∞</div><div class="hstat-l">Notes</div></div>
-        <div class="hstat"><div class="hstat-n">Offline</div><div class="hstat-l">+ Cloud Sync</div></div>
+        <div class="hstat"><div class="hstat-n">Offline</div><div class="hstat-l">+ Cloud</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- APP MOCKUP -->
 <div class="mockup-section">
   <div class="container">
     <div class="mockup-wrap reveal">
@@ -679,56 +674,54 @@ ul { list-style:none; }
   </div>
 </div>
 
-<!-- FEATURES -->
 <section class="section" id="features" style="background:var(--surf-2)">
   <div class="container">
     <div class="sec-head reveal">
       <div class="eyebrow">What's Inside</div>
-      <h2 class="section-title">Built for the way<br/><em>you think.</em></h2>
-      <p class="section-desc">Powerful features packed into a clean, lightweight Android app.</p>
+      <h2 class="section-title">Everything you need,<br/><em>nothing you don't.</em></h2>
+      <p class="section-desc">Six powerful features built into a lightweight, beautiful Android app.</p>
     </div>
     <div class="features-grid">
       <div class="fcard reveal">
         <div class="fcard-icon"><span class="material-icons-round">person</span></div>
         <div class="fcard-title">Account & Guest Login</div>
-        <p class="fcard-desc">Jump in as a guest instantly, or sign in to unlock cloud sync and premium features. Your choice, always.</p>
+        <p class="fcard-desc">Sign in for cloud sync and backups, or jump in as a guest with zero setup. Both modes have full access to all local features.</p>
         <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Flexible Access</div>
       </div>
       <div class="fcard reveal">
         <div class="fcard-icon"><span class="material-icons-round">cloud_sync</span></div>
         <div class="fcard-title">Offline + Online Sync</div>
-        <p class="fcard-desc">Write freely without internet. Go online and your notes sync automatically — no manual steps, ever.</p>
+        <p class="fcard-desc">Write without internet — everything works. Go online and your notes sync instantly across devices, automatically.</p>
         <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Always Available</div>
       </div>
       <div class="fcard reveal">
         <div class="fcard-icon"><span class="material-icons-round">font_download</span></div>
         <div class="fcard-title">Unique Font Support</div>
-        <p class="fcard-desc">8 carefully chosen fonts — serif, sans-serif, mono, and more. Each note can have its own font for a personal touch.</p>
-        <div class="fcard-tag"><span class="material-icons-round">check_circle</span>8 Handpicked Fonts</div>
+        <p class="fcard-desc">Pick from 20+ handpicked fonts — serif, sans-serif, monospace, decorative. Set a different font per note for a personal touch.</p>
+        <div class="fcard-tag"><span class="material-icons-round">check_circle</span>20+ Google Fonts</div>
       </div>
       <div class="fcard reveal">
         <div class="fcard-icon"><span class="material-icons-round">palette</span></div>
         <div class="fcard-title">Themes & Customization</div>
-        <p class="fcard-desc">Color themes, dark mode, font sizes, card styles — deep customization so the app truly feels like yours.</p>
-        <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Make It Yours</div>
+        <p class="fcard-desc">Choose your color scheme, toggle dark mode, adjust font sizes, switch card styles. Your app, your look, every time.</p>
+        <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Fully Yours</div>
       </div>
       <div class="fcard reveal">
         <div class="fcard-icon"><span class="material-icons-round">backup</span></div>
         <div class="fcard-title">Cloud Backup</div>
-        <p class="fcard-desc">Switch phones, reinstall anytime — your notes are always backed up and ready to restore instantly.</p>
+        <p class="fcard-desc">Notes backed up securely in the cloud. Switch phones, reinstall — everything is exactly where you left it.</p>
         <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Auto Backup</div>
       </div>
       <div class="fcard reveal">
         <div class="fcard-icon"><span class="material-icons-round">edit_note</span></div>
         <div class="fcard-title">Rich Text Editor</div>
-        <p class="fcard-desc">Bold, italic, headings, checklists, code blocks — formatting that keeps pace with how you think and write.</p>
+        <p class="fcard-desc">Bold, italic, headings, bullet lists, checklists, code blocks. A full editor that keeps pace with how you think.</p>
         <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Full Formatting</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LOGIN -->
 <section class="section" id="login">
   <div class="container">
     <div class="sec-head reveal">
@@ -772,7 +765,6 @@ ul { list-style:none; }
   </div>
 </section>
 
-<!-- CUSTOMIZATION -->
 <section class="section" id="customize" style="background:var(--surf-2)">
   <div class="container">
     <div class="sec-head reveal">
@@ -794,7 +786,7 @@ ul { list-style:none; }
           </div>
         </div>
         <div>
-          <div class="option-group-label">Note Font · 8 Unique Styles</div>
+          <div class="option-group-label">Note Font</div>
           <div class="font-row">
             <button class="font-chip on" data-f="'Lora',serif" onclick="applyFont(this)" style="font-family:'Lora',serif">Lora</button>
             <button class="font-chip" data-f="'Plus Jakarta Sans',sans-serif" onclick="applyFont(this)">Jakarta Sans</button>
@@ -859,7 +851,6 @@ ul { list-style:none; }
   </div>
 </section>
 
-<!-- SYNC -->
 <section class="sync-section" id="sync">
   <div class="container">
     <div class="sync-inner">
@@ -900,7 +891,6 @@ ul { list-style:none; }
   </div>
 </section>
 
-<!-- UPDATES -->
 <section class="section" id="updates">
   <div class="container" style="max-width:760px">
     <div class="sec-head reveal">
@@ -949,7 +939,6 @@ ul { list-style:none; }
   </div>
 </section>
 
-<!-- FEEDBACK -->
 <section class="section-sm" id="feedback" style="background:var(--surf-2)">
   <div class="container">
     <div class="sec-head reveal">
@@ -960,14 +949,14 @@ ul { list-style:none; }
     <div class="feedback-grid">
       <div class="reveal">
         <div class="contact-cards">
-          <a href="mailto:noteyouapp@gmail.com" class="contact-card">
+          <a href="mailto:your@email.com" class="contact-card">
             <div class="cc-icon"><span class="material-icons-round">email</span></div>
             <div>
               <div class="cc-label">Email</div>
-              <div class="cc-value">noteyouapp@gmail.com</div>
+              <div class="cc-value">your@email.com</div>
             </div>
           </a>
-          <a href="https://github.com/Anonymous-darksider" target="_blank" class="contact-card">
+          <a href="https://github.com/kyrox-official" target="_blank" class="contact-card">
             <div class="cc-icon">
               <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.547 1.376.203 2.394.1 2.646.64.698 1.028 1.59 1.028 2.682 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
@@ -975,7 +964,7 @@ ul { list-style:none; }
             </div>
             <div>
               <div class="cc-label">GitHub</div>
-              <div class="cc-value">github.com/Anonymous-darksider</div>
+              <div class="cc-value">github.com/kyrox-official</div>
             </div>
           </a>
         </div>
@@ -1027,28 +1016,35 @@ ul { list-style:none; }
   </div>
 </section>
 
-<!-- DOWNLOAD -->
 <section class="dl-section" id="download">
   <div class="container">
     <div class="dl-inner reveal">
       <div class="dl-icon"><span class="material-icons-round">android</span></div>
-      <h2 class="dl-title">Get <em>NoteYou</em><br/>for Android</h2>
-      <p class="dl-desc">Download the APK and start writing right away. No account needed to get started — guest mode lets you dive in instantly.</p>
-      <a href="#" class="dl-btn">
-        <span class="material-icons-round">download</span>Download APK · v1.0
-      </a>
+      <h2 class="dl-title">Download <em>NoteYou</em><br/>for Android</h2>
+      <p class="dl-desc">Free forever. No ads. No hidden fees. No account required to get started.</p>
+      
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px;">
+        <a href="https://github.com/kyrox-official/noteyou-website/releases/latest/download/NoteYou.apk" class="dl-btn">
+          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.547 1.376.203 2.394.1 2.646.64.698 1.028 1.59 1.028 2.682 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub Se Download
+        </a>
+        <a href="#" class="dl-btn" style="background: #24CC63; color: #fff;">
+          <span class="material-icons-round">android</span>
+          APKPure Se Download
+        </a>
+      </div>
+
       <div class="dl-note">Android 6.0+ required · ~5 MB · Safe & verified</div>
       <div class="dl-chips">
         <div class="dl-chip"><span class="material-icons-round">lock</span>Secure</div>
+        <div class="dl-chip"><span class="material-icons-round">block</span>No Ads</div>
         <div class="dl-chip"><span class="material-icons-round">bolt</span>Lightweight</div>
-        <div class="dl-chip"><span class="material-icons-round">person_outline</span>Guest Mode</div>
-        <div class="dl-chip"><span class="material-icons-round">update</span>Regular Updates</div>
+        <div class="dl-chip"><span class="material-icons-round">update</span>Free Updates</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
@@ -1062,7 +1058,7 @@ ul { list-style:none; }
         <a href="#customize" class="footer-link">Customize</a>
         <a href="#updates" class="footer-link">Updates</a>
         <a href="#feedback" class="footer-link">Feedback</a>
-        <a href="https://github.com/Anonymous-darksider" target="_blank" class="footer-link">GitHub</a>
+        <a href="https://github.com/kyrox-official" target="_blank" class="footer-link">GitHub</a>
       </div>
       <div class="footer-copy">Made with ♥ · NoteYou © 2026</div>
     </div>
