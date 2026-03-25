@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NoteYou – Smart Notes for Everyone</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<style>
+/* ─── TOKENS ─────────────────────────────── */
+:root {
+  --p:        #5B4FCF;
+  --p-light:  #EDE9FD;
+  --p-dark:   #3B31A4;
+  --on-p:     #FFFFFF;
+  --bg:       #F7F5FF;
+  --surface:  #FFFFFF;
+  --surf-2:   #F0EEF8;
+  --surf-3:   #E6E3F5;
+  --on-bg:    #1A1830;
+  --on-surf:  #1A1830;
+  --muted:    #64607E;
+  --border:   #D8D5EC;
+  --success:  #1A8F5A;
+  --error:    #B00020;
+  --r-sm:     8px;
+  --r-md:     14px;
+  --r-lg:     20px;
+  --r-xl:     28px;
+  --r-full:   999px;
+  --sh-1: 0 1px 4px rgba(0,0,0,.07), 0 2px 8px rgba(0,0,0,.05);
+  --sh-2: 0 4px 16px rgba(0,0,0,.09), 0 2px 6px rgba(0,0,0,.06);
+  --sh-3: 0 8px 32px rgba(0,0,0,.11), 0 4px 12px rgba(0,0,0,.07);
+  --font: 'Plus Jakarta Sans', sans-serif;
+  --serif: 'Lora', serif;
+  --mono: 'JetBrains Mono', monospace;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+[data-dark] {
+  --p:        #9D8FFF;
+  --p-light:  #2D2860;
+  --p-dark:   #C5BEFF;
+  --bg:       #12101E;
+  --surface:  #1C1A2E;
+  --surf-2:   #252338;
+  --surf-3:   #2F2C44;
+  --on-bg:    #E8E4FF;
+  --on-surf:  #E8E4FF;
+  --muted:    #9E98C0;
+  --border:   #38344F;
+}
+
+/* ─── RESET ──────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body { font-family:var(--font); background:var(--bg); color:var(--on-bg); line-height:1.6; overflow-x:hidden; transition:background .3s, color .3s; }
+img { max-width:100%; display:block; }
+a { text-decoration:none; }
+button { cursor:pointer; font-family:var(--font); }
+ul { list-style:none; }
+
+/* ─── SCROLLBAR ──────────────────────────── */
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+/* ─── LAYOUT HELPERS ─────────────────────── */
+.container { width:100%; max-width:1120px; margin:0 auto; padding:0 24px; }
+.section { padding:96px 0; }
+.section-sm { padding:72px 0; }
+
+/* ─── NAV ─────────────────────────────────── */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  height:64px;
+  background:rgba(247,245,255,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  transition:background .3s, box-shadow .3s;
+}
+[data-dark] .nav { background:rgba(18,16,30,.92); }
+.nav.raised { box-shadow:var(--sh-2); }
+.nav-inner { height:64px; display:flex; align-items:center; gap:8px; }
+.nav-logo { display:flex; align-items:center; gap:10px; margin-right:auto; }
+.nav-logo-mark {
+  width:34px; height:34px; border-radius:10px;
+  background:var(--p); color:var(--on-p);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif); font-style:italic; font-size:1.1rem; font-weight:600;
+  flex-shrink:0;
+}
+.nav-logo-text { font-weight:700; font-size:1.1rem; color:var(--on-bg); letter-spacing:-.01em; }
+.nav-logo-text b { color:var(--p); font-weight:700; }
+.nav-links { display:flex; align-items:center; gap:2px; }
+.nav-link {
+  padding:7px 14px; border-radius:var(--r-full);
+  font-size:.85rem; font-weight:500; color:var(--muted);
+  transition:background .2s, color .2s;
+}
+.nav-link:hover { background:var(--surf-2); color:var(--on-bg); }
+.nav-actions { display:flex; align-items:center; gap:8px; margin-left:8px; }
+.icon-btn {
+  width:38px; height:38px; border-radius:var(--r-full);
+  background:transparent; border:none;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--muted); transition:background .2s, color .2s;
+}
+.icon-btn:hover { background:var(--surf-2); color:var(--on-bg); }
+.icon-btn .material-icons-round { font-size:20px; }
+
+/* ─── BUTTONS ─────────────────────────────── */
+.btn {
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font); font-size:.875rem; font-weight:600;
+  border:none; border-radius:var(--r-full); cursor:pointer;
+  padding:11px 22px; transition:all .2s var(--ease);
+  white-space:nowrap;
+}
+.btn .material-icons-round { font-size:18px; }
+.btn-primary { background:var(--p); color:var(--on-p); box-shadow:var(--sh-1); }
+.btn-primary:hover { background:var(--p-dark); box-shadow:var(--sh-2); transform:translateY(-1px); }
+.btn-tonal { background:var(--p-light); color:var(--p); }
+.btn-tonal:hover { filter:brightness(.96); box-shadow:var(--sh-1); transform:translateY(-1px); }
+.btn-outline { background:transparent; color:var(--p); border:1.5px solid var(--border); }
+.btn-outline:hover { border-color:var(--p); background:var(--p-light); }
+.btn-ghost { background:transparent; color:var(--muted); border:none; }
+.btn-ghost:hover { background:var(--surf-2); color:var(--on-bg); }
+
+/* ─── HERO ─────────────────────────────────── */
+.hero {
+  padding:140px 0 96px;
+  background: linear-gradient(180deg, var(--p-light) 0%, var(--bg) 100%);
+  position:relative; overflow:hidden;
+}
+.hero-orb {
+  position:absolute; border-radius:50%; pointer-events:none; filter:blur(60px); opacity:.35;
+}
+.hero-orb-1 { width:500px; height:500px; background:var(--p); top:-200px; right:-100px; }
+.hero-orb-2 { width:400px; height:400px; background:#C084FC; bottom:-150px; left:-100px; opacity:.2; }
+.hero-inner { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.hero-pill {
+  display:inline-flex; align-items:center; gap:7px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-full); padding:6px 16px;
+  font-size:.78rem; font-weight:600; color:var(--p);
+  letter-spacing:.04em; text-transform:uppercase; margin-bottom:32px;
+  box-shadow:var(--sh-1);
+}
+.pill-dot { width:7px; height:7px; border-radius:50%; background:var(--p); animation:pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.3)} }
+.hero-title {
+  font-family:var(--serif);
+  font-size:clamp(2.8rem, 6vw, 5rem);
+  font-weight:600; line-height:1.1;
+  color:var(--on-bg); margin-bottom:20px; letter-spacing:-.02em;
+}
+.hero-title em { font-style:italic; color:var(--p); }
+.hero-desc {
+  font-size:1.05rem; color:var(--muted); max-width:520px;
+  line-height:1.75; margin-bottom:36px; font-weight:400;
+}
+.hero-ctas { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:56px; }
+.hero-stats {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:0;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--sh-1);
+}
+.hstat { padding:18px 32px; text-align:center; }
+.hstat + .hstat { border-left:1px solid var(--border); }
+.hstat-n { font-family:var(--serif); font-size:1.6rem; color:var(--p); line-height:1; margin-bottom:4px; }
+.hstat-l { font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.07em; }
+
+/* ─── PHONE MOCKUP ─────────────────────────── */
+.mockup-section { padding:0 0 96px; }
+.mockup-wrap {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  box-shadow:var(--sh-3);
+  max-width:900px; margin:0 auto;
+}
+.mockup-topbar {
+  height:52px; background:var(--p);
+  display:flex; align-items:center; padding:0 20px; gap:12px;
+  color:var(--on-p);
+}
+.mockup-topbar .material-icons-round { font-size:22px; }
+.mockup-topbar-title { font-weight:600; font-size:.95rem; flex:1; }
+.mockup-body { display:flex; min-height:360px; }
+.mockup-sidebar {
+  width:220px; flex-shrink:0;
+  border-right:1px solid var(--border);
+  padding:16px 12px;
+  background:var(--surf-2);
+}
+.sidebar-user { display:flex; align-items:center; gap:10px; padding:10px 8px 16px; border-bottom:1px solid var(--border); margin-bottom:10px; }
+.avatar { width:38px; height:38px; border-radius:50%; background:var(--p); color:var(--on-p); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.95rem; flex-shrink:0; }
+.sidebar-user-name { font-size:.85rem; font-weight:600; color:var(--on-surf); }
+.sidebar-user-plan { font-size:.68rem; color:var(--muted); }
+.sidebar-item {
+  display:flex; align-items:center; gap:10px; padding:9px 10px;
+  border-radius:var(--r-md); font-size:.82rem; color:var(--muted);
+  transition:background .15s, color .15s; margin-bottom:2px;
+}
+.sidebar-item .material-icons-round { font-size:18px; }
+.sidebar-item:hover, .sidebar-item.active { background:var(--p-light); color:var(--p); }
+.sidebar-divider { height:1px; background:var(--border); margin:8px 0; }
+.mockup-main { flex:1; padding:20px; overflow:hidden; }
+.mockup-search {
+  display:flex; align-items:center; gap:8px;
+  background:var(--surf-2); border:1px solid var(--border);
+  border-radius:var(--r-full); padding:9px 16px;
+  font-size:.83rem; color:var(--muted); margin-bottom:16px;
+}
+.mockup-search .material-icons-round { font-size:17px; }
+.note-cards-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.nc {
+  background:var(--surf-2); border-radius:var(--r-md);
+  padding:14px; border-left:3px solid var(--p);
+  border:1px solid var(--border); border-left-width:3px;
+}
+.nc:nth-child(2) { border-left-color:#7C3AED; }
+.nc:nth-child(3) { border-left-color:#0891B2; }
+.nc:nth-child(4) { border-left-color:#059669; }
+.nc-cat { font-size:.62rem; color:var(--p); font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:5px; display:flex; align-items:center; gap:4px; }
+.nc:nth-child(2) .nc-cat { color:#7C3AED; }
+.nc:nth-child(3) .nc-cat { color:#0891B2; }
+.nc:nth-child(4) .nc-cat { color:#059669; }
+.nc-cat .material-icons-round { font-size:12px; }
+.nc-title { font-size:.83rem; font-weight:700; color:var(--on-surf); margin-bottom:4px; }
+.nc-body { font-size:.72rem; color:var(--muted); line-height:1.5; }
+.nc-foot { display:flex; justify-content:space-between; align-items:center; margin-top:8px; }
+.nc-date { font-size:.62rem; color:var(--muted); }
+.nc-font { font-size:.58rem; background:var(--p-light); color:var(--p); padding:2px 7px; border-radius:var(--r-full); font-family:var(--mono); }
+
+/* ─── FEATURES ─────────────────────────────── */
+.features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:48px; }
+.fcard {
+  background:var(--surface); border-radius:var(--r-lg);
+  border:1px solid var(--border); padding:24px 20px;
+  transition:box-shadow .25s, transform .25s;
+  display:flex; flex-direction:column; overflow:hidden; min-width:0;
+}
+.fcard:hover { box-shadow:var(--sh-3); transform:translateY(-4px); }
+.fcard-icon {
+  width:44px; height:44px; border-radius:var(--r-md);
+  background:var(--p-light); color:var(--p);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:14px; flex-shrink:0;
+}
+.fcard-icon .material-icons-round { font-size:22px; }
+.fcard-title { font-size:.92rem; font-weight:700; color:var(--on-surf); margin-bottom:7px; word-break:break-word; }
+.fcard-desc { font-size:.82rem; color:var(--muted); line-height:1.68; flex:1; word-break:break-word; }
+.fcard-tag {
+  margin-top:12px; display:inline-flex; align-items:center; gap:5px;
+  font-size:.68rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--p); background:var(--p-light); padding:4px 10px; border-radius:var(--r-full);
+  align-self:flex-start; white-space:nowrap;
+}
+.fcard-tag .material-icons-round { font-size:13px; }
+
+/* icon color variants */
+.fcard:nth-child(2) .fcard-icon { background:#EDE9FD; color:#7C3AED; }
+.fcard:nth-child(2) .fcard-tag { background:#EDE9FD; color:#7C3AED; }
+.fcard:nth-child(3) .fcard-icon { background:#E0F2FE; color:#0891B2; }
+.fcard:nth-child(3) .fcard-tag { background:#E0F2FE; color:#0891B2; }
+.fcard:nth-child(4) .fcard-icon { background:#D1FAE5; color:#059669; }
+.fcard:nth-child(4) .fcard-tag { background:#D1FAE5; color:#059669; }
+.fcard:nth-child(5) .fcard-icon { background:#FEF3C7; color:#D97706; }
+.fcard:nth-child(5) .fcard-tag { background:#FEF3C7; color:#D97706; }
+.fcard:nth-child(6) .fcard-icon { background:#FFE4E6; color:#E11D48; }
+.fcard:nth-child(6) .fcard-tag { background:#FFE4E6; color:#E11D48; }
+
+/* ─── LOGIN SECTION ────────────────────────── */
+.login-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
+.login-card {
+  background:var(--surface); border-radius:var(--r-xl);
+  border:2px solid var(--border); padding:32px;
+  transition:border-color .25s, box-shadow .25s;
+}
+.login-card:hover { border-color:var(--p); box-shadow:var(--sh-2); }
+.login-card.featured { border-color:var(--p); background:linear-gradient(160deg, var(--p-light), var(--surface) 60%); }
+.lc-head { display:flex; align-items:flex-start; gap:14px; margin-bottom:20px; }
+.lc-icon {
+  width:52px; height:52px; border-radius:var(--r-lg); flex-shrink:0;
+  background:var(--p-light); color:var(--p);
+  display:flex; align-items:center; justify-content:center;
+}
+.lc-icon .material-icons-round { font-size:26px; }
+.login-card.guest .lc-icon { background:#FEF3C7; color:#D97706; }
+.lc-badge { font-size:.65rem; background:var(--p); color:var(--on-p); padding:2px 10px; border-radius:var(--r-full); font-weight:700; letter-spacing:.07em; text-transform:uppercase; display:inline-block; margin-bottom:4px; }
+.lc-title { font-size:1.1rem; font-weight:700; color:var(--on-surf); }
+.lc-desc { font-size:.875rem; color:var(--muted); line-height:1.7; margin-bottom:20px; }
+.perk-list { display:flex; flex-direction:column; gap:8px; }
+.perk { display:flex; align-items:center; gap:8px; font-size:.83rem; color:var(--on-surf); }
+.perk .material-icons-round { font-size:16px; color:var(--p); flex-shrink:0; }
+.login-card.guest .perk .material-icons-round { color:#D97706; }
+
+/* ─── CUSTOMIZATION ─────────────────────────── */
+.custom-layout { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; margin-top:48px; }
+.custom-panel { display:flex; flex-direction:column; gap:20px; }
+
+.option-group-label { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:10px; }
+.color-swatches { display:flex; gap:10px; flex-wrap:wrap; }
+.cswatch {
+  width:34px; height:34px; border-radius:50%; cursor:pointer;
+  border:3px solid transparent; transition:transform .2s, border-color .2s;
+  position:relative;
+}
+.cswatch:hover { transform:scale(1.12); }
+.cswatch.on { border-color:var(--on-bg); }
+
+.font-row { display:flex; gap:8px; flex-wrap:wrap; }
+.font-chip {
+  padding:6px 14px; border-radius:var(--r-full);
+  border:1.5px solid var(--border); background:transparent;
+  font-size:.8rem; color:var(--muted);
+  transition:all .2s; cursor:pointer;
+}
+.font-chip:hover { border-color:var(--p); color:var(--p); }
+.font-chip.on { background:var(--p-light); border-color:var(--p); color:var(--p); font-weight:600; }
+
+.opt-row {
+  display:flex; align-items:center; justify-content:space-between;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-md); padding:14px 18px;
+}
+.opt-left { display:flex; align-items:center; gap:12px; }
+.opt-icon { color:var(--p); display:flex; }
+.opt-icon .material-icons-round { font-size:20px; }
+.opt-label { font-size:.875rem; font-weight:500; color:var(--on-surf); }
+.opt-sub { font-size:.75rem; color:var(--muted); }
+
+/* MD3 Toggle */
+.toggle { position:relative; width:50px; height:28px; flex-shrink:0; }
+.toggle input { position:absolute; opacity:0; width:0; height:0; }
+.track {
+  position:absolute; inset:0; border-radius:14px;
+  background:var(--surf-3); border:2px solid var(--border);
+  transition:background .2s, border-color .2s; cursor:pointer;
+}
+.toggle input:checked + .track { background:var(--p); border-color:var(--p); }
+.thumb {
+  position:absolute; top:5px; left:5px;
+  width:14px; height:14px; border-radius:50%;
+  background:var(--muted); pointer-events:none;
+  transition:left .2s, background .2s, width .15s, height .15s;
+}
+.toggle input:checked ~ .thumb { left:27px; background:#fff; width:18px; height:18px; top:3px; }
+
+/* Preview card */
+.preview-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-xl); overflow:hidden; box-shadow:var(--sh-2);
+}
+.prev-topbar {
+  height:48px; background:var(--p); padding:0 18px;
+  display:flex; align-items:center; gap:10px; color:var(--on-p);
+}
+.prev-topbar .material-icons-round { font-size:20px; }
+.prev-topbar-title { font-size:.9rem; font-weight:600; flex:1; }
+.prev-body { padding:24px; }
+.prev-title { font-size:1.35rem; font-weight:600; color:var(--on-surf); margin-bottom:12px; transition:font-family .3s; }
+.prev-text { font-size:.875rem; color:var(--muted); line-height:1.8; transition:font-family .3s; }
+.prev-toolbar {
+  border-top:1px solid var(--border); background:var(--surf-2);
+  display:flex; gap:4px; padding:10px 16px; flex-wrap:wrap;
+}
+.tb-btn {
+  padding:5px 11px; border-radius:var(--r-sm);
+  border:none; background:var(--surface); color:var(--muted);
+  font-size:.78rem; cursor:pointer; font-family:var(--font);
+  transition:all .15s;
+}
+.tb-btn:hover, .tb-btn.on { background:var(--p); color:var(--on-p); }
+
+/* ─── SYNC ─────────────────────────────────── */
+.sync-section { background:var(--p); padding:96px 0; }
+.sync-inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+.sync-text .eyebrow { color:rgba(255,255,255,.65); }
+.sync-text .section-title { color:#fff; }
+.sync-text .section-desc { color:rgba(255,255,255,.7); }
+.sync-cards { display:flex; flex-direction:column; gap:14px; }
+.sync-card {
+  background:rgba(255,255,255,.12); backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:var(--r-lg); padding:18px 20px;
+  display:flex; align-items:center; gap:14px;
+  transition:background .2s;
+}
+.sync-card:hover { background:rgba(255,255,255,.18); }
+.sync-card-ic {
+  width:44px; height:44px; border-radius:var(--r-md);
+  background:rgba(255,255,255,.2);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  color:#fff;
+}
+.sync-card-ic .material-icons-round { font-size:22px; }
+.sync-card-title { font-size:.92rem; font-weight:700; color:#fff; margin-bottom:3px; }
+.sync-card-desc { font-size:.78rem; color:rgba(255,255,255,.65); line-height:1.5; }
+.progress-rows { margin-top:28px; display:flex; flex-direction:column; gap:14px; }
+.prog-row {}
+.prog-head { display:flex; justify-content:space-between; font-size:.78rem; color:rgba(255,255,255,.65); margin-bottom:6px; }
+.prog-track { height:6px; background:rgba(255,255,255,.2); border-radius:3px; overflow:hidden; }
+.prog-fill { height:100%; background:#fff; border-radius:3px; width:0; transition:width 1.5s var(--ease); }
+
+/* ─── UPDATES ──────────────────────────────── */
+.tl { position:relative; margin-top:48px; display:flex; flex-direction:column; gap:0; }
+.tl::before { content:''; position:absolute; left:23px; top:24px; bottom:24px; width:2px; background:var(--border); }
+.tl-row { display:flex; gap:20px; padding-bottom:32px; }
+.tl-dot {
+  width:48px; height:48px; border-radius:50%; flex-shrink:0;
+  background:var(--p-light); border:2px solid var(--p);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--p); font-size:.75rem; font-weight:700;
+  font-family:var(--mono); position:relative; z-index:1;
+}
+.tl-dot.active { background:var(--p); color:var(--on-p); }
+.tl-card {
+  flex:1; background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:22px 24px; box-shadow:var(--sh-1);
+}
+.tl-meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+.tl-ver { font-family:var(--mono); font-size:.8rem; color:var(--p); font-weight:500; }
+.tl-badge { background:var(--p); color:var(--on-p); font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; padding:2px 9px; border-radius:var(--r-full); }
+.tl-date { font-size:.72rem; color:var(--muted); margin-left:auto; }
+.tl-title { font-size:1rem; font-weight:700; color:var(--on-surf); margin-bottom:8px; }
+.tl-desc { font-size:.85rem; color:var(--muted); line-height:1.7; margin-bottom:14px; }
+.tl-list { display:flex; flex-direction:column; gap:5px; }
+.tl-item-row { display:flex; align-items:center; gap:7px; font-size:.8rem; color:var(--muted); }
+.tl-item-row .material-icons-round { font-size:14px; color:var(--p); }
+
+/* ─── FEEDBACK ─────────────────────────────── */
+.feedback-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:48px; align-items:start; margin-top:48px; }
+.contact-cards { display:flex; flex-direction:column; gap:12px; margin-top:24px; }
+.contact-card {
+  display:flex; align-items:center; gap:14px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:16px 20px;
+  transition:border-color .2s, box-shadow .2s, transform .2s;
+  color:var(--on-surf);
+}
+.contact-card:hover { border-color:var(--p); box-shadow:var(--sh-2); transform:translateX(4px); }
+.cc-icon {
+  width:44px; height:44px; border-radius:var(--r-md); flex-shrink:0;
+  background:var(--p-light); color:var(--p);
+  display:flex; align-items:center; justify-content:center;
+}
+.cc-icon .material-icons-round { font-size:22px; }
+.cc-label { font-size:.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:.07em; }
+.cc-value { font-size:.9rem; font-weight:500; color:var(--on-surf); }
+
+/* Form */
+.form { display:flex; flex-direction:column; gap:16px; }
+.field { display:flex; flex-direction:column; gap:6px; }
+.field label { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+.field input, .field textarea, .field select {
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:var(--r-md); padding:11px 15px;
+  font-family:var(--font); font-size:.9rem; color:var(--on-surf);
+  outline:none; transition:border-color .2s, box-shadow .2s;
+  resize:vertical; width:100%;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  border-color:var(--p);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--p) 12%, transparent);
+}
+.field textarea { min-height:110px; }
+.stars { display:flex; gap:5px; }
+.star { font-size:1.5rem; cursor:pointer; color:var(--border); transition:color .15s, transform .15s; line-height:1; }
+.star:hover, .star.on { color:#F59E0B; transform:scale(1.15); }
+.snack {
+  display:none; align-items:center; gap:9px; padding:12px 16px;
+  background:var(--success); color:#fff; border-radius:var(--r-md);
+  font-size:.85rem; font-weight:500;
+}
+.snack.show { display:flex; animation:snackUp .35s var(--ease); }
+@keyframes snackUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+.snack .material-icons-round { font-size:18px; }
+
+/* ─── DOWNLOAD ─────────────────────────────── */
+.dl-section {
+  background:linear-gradient(135deg, #1A1830 0%, #2D2460 100%);
+  padding:96px 0; text-align:center;
+}
+.dl-inner { display:flex; flex-direction:column; align-items:center; }
+.dl-icon {
+  width:80px; height:80px; border-radius:var(--r-xl);
+  background:rgba(255,255,255,.12); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:24px; border:1px solid rgba(255,255,255,.15);
+}
+.dl-icon .material-icons-round { font-size:38px; }
+.dl-title { font-family:var(--serif); font-size:clamp(2rem,5vw,3rem); color:#fff; margin-bottom:12px; line-height:1.15; }
+.dl-title em { font-style:italic; color:#C4BCFF; }
+.dl-desc { color:rgba(255,255,255,.6); font-size:1rem; max-width:460px; margin-bottom:36px; line-height:1.7; }
+.dl-btn {
+  display:inline-flex; align-items:center; gap:10px;
+  background:#fff; color:var(--p-dark);
+  border-radius:var(--r-full); padding:15px 36px;
+  font-size:1rem; font-weight:700; transition:all .25s;
+  box-shadow:0 8px 32px rgba(0,0,0,.25);
+}
+.dl-btn:hover { transform:translateY(-3px); box-shadow:0 16px 48px rgba(0,0,0,.3); }
+.dl-btn .material-icons-round { font-size:22px; }
+.dl-note { color:rgba(255,255,255,.35); font-size:.78rem; margin-top:14px; }
+.dl-chips { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:32px; }
+.dl-chip {
+  display:flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);
+  border-radius:var(--r-full); padding:7px 16px;
+  font-size:.78rem; color:rgba(255,255,255,.8);
+}
+.dl-chip .material-icons-round { font-size:15px; }
+
+/* ─── FOOTER ────────────────────────────────── */
+.footer { background:var(--surface); border-top:1px solid var(--border); padding:28px 0; }
+.footer-inner { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; }
+.footer-logo { display:flex; align-items:center; gap:9px; }
+.footer-logo-mark { width:30px; height:30px; border-radius:8px; background:var(--p); color:var(--on-p); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-style:italic; font-size:.95rem; }
+.footer-logo-text { font-weight:700; font-size:.95rem; color:var(--on-bg); }
+.footer-logo-text b { color:var(--p); }
+.footer-links { display:flex; gap:4px; flex-wrap:wrap; }
+.footer-link { padding:5px 12px; border-radius:var(--r-full); font-size:.8rem; color:var(--muted); transition:background .2s, color .2s; }
+.footer-link:hover { background:var(--surf-2); color:var(--on-bg); }
+.footer-copy { font-size:.75rem; color:var(--muted); }
+
+/* ─── SECTION HEADER ─────────────────────────── */
+.sec-head { margin-bottom:48px; }
+.eyebrow { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:var(--p); margin-bottom:10px; }
+.section-title { font-family:var(--serif); font-size:clamp(1.9rem,4vw,2.9rem); color:var(--on-bg); line-height:1.12; margin-bottom:14px; }
+.section-title em { font-style:italic; color:var(--p); }
+.section-desc { font-size:1rem; color:var(--muted); max-width:520px; line-height:1.75; }
+
+/* ─── REVEAL ─────────────────────────────────── */
+.reveal { opacity:0; transform:translateY(24px); transition:opacity .65s var(--ease), transform .65s var(--ease); }
+.reveal.in { opacity:1; transform:none; }
+
+/* ─── RESPONSIVE ─────────────────────────────── */
+@media (max-width:960px) {
+  .features-grid { grid-template-columns:1fr 1fr; }
+  .login-grid { grid-template-columns:1fr; }
+  .custom-layout { grid-template-columns:1fr; }
+  .sync-inner { grid-template-columns:1fr; }
+  .feedback-grid { grid-template-columns:1fr; }
+  .mockup-sidebar { display:none; }
+  .note-cards-grid { grid-template-columns:1fr; }
+}
+@media (max-width:640px) {
+  .nav-links { display:none; }
+  .features-grid { grid-template-columns:1fr; }
+  .hero-stats .hstat + .hstat { border-left:none; border-top:1px solid var(--border); }
+  .hero-stats { flex-direction:column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-mark">N</div>
+        <span class="nav-logo-text">Note<b>You</b></span>
+      </a>
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#login" class="nav-link">Login</a>
+        <a href="#customize" class="nav-link">Customize</a>
+        <a href="#updates" class="nav-link">Updates</a>
+        <a href="#feedback" class="nav-link">Feedback</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="darkBtn" onclick="toggleDark()" title="Toggle dark mode">
+          <span class="material-icons-round">dark_mode</span>
+        </button>
+        <a href="#download" class="btn btn-primary">
+          <span class="material-icons-round">download</span>Download
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-pill reveal">
+        <div class="pill-dot"></div>Android App · v1.0 Out Now
+      </div>
+      <h1 class="hero-title reveal">Notes that feel<br/><em>truly yours</em></h1>
+      <p class="hero-desc reveal">Write offline or sync to the cloud. Choose your font, set your theme, work your way. NoteYou adapts to you — not the other way around.</p>
+      <div class="hero-ctas reveal">
+        <a href="#download" class="btn btn-primary">
+          <span class="material-icons-round">download</span>Download APK
+        </a>
+        <a href="#features" class="btn btn-tonal">
+          <span class="material-icons-round">explore</span>Explore Features
+        </a>
+        <a href="#feedback" class="btn btn-outline">
+          <span class="material-icons-round">chat_bubble_outline</span>Feedback
+        </a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="hstat"><div class="hstat-n">Free</div><div class="hstat-l">To Download</div></div>
+        <div class="hstat"><div class="hstat-n">8</div><div class="hstat-l">Unique Fonts</div></div>
+        <div class="hstat"><div class="hstat-n">∞</div><div class="hstat-l">Notes</div></div>
+        <div class="hstat"><div class="hstat-n">Offline</div><div class="hstat-l">+ Cloud Sync</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP MOCKUP -->
+<div class="mockup-section">
+  <div class="container">
+    <div class="mockup-wrap reveal">
+      <div class="mockup-topbar">
+        <span class="material-icons-round">menu</span>
+        <span class="mockup-topbar-title">My Notes</span>
+        <span class="material-icons-round">search</span>
+        <span class="material-icons-round">more_vert</span>
+      </div>
+      <div class="mockup-body">
+        <div class="mockup-sidebar">
+          <div class="sidebar-user">
+            <div class="avatar">R</div>
+            <div>
+              <div class="sidebar-user-name">Rahul Sharma</div>
+              <div class="sidebar-user-plan">Pro Account</div>
+            </div>
+          </div>
+          <div class="sidebar-item active"><span class="material-icons-round">notes</span>All Notes</div>
+          <div class="sidebar-item"><span class="material-icons-round">push_pin</span>Pinned</div>
+          <div class="sidebar-item"><span class="material-icons-round">folder</span>Folders</div>
+          <div class="sidebar-item"><span class="material-icons-round">cloud_sync</span>Cloud Sync</div>
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-item"><span class="material-icons-round">palette</span>Themes</div>
+          <div class="sidebar-item"><span class="material-icons-round">font_download</span>Fonts</div>
+          <div class="sidebar-item"><span class="material-icons-round">settings</span>Settings</div>
+        </div>
+        <div class="mockup-main">
+          <div class="mockup-search">
+            <span class="material-icons-round">search</span>Search your notes...
+          </div>
+          <div class="note-cards-grid">
+            <div class="nc">
+              <div class="nc-cat"><span class="material-icons-round">push_pin</span>Pinned · Work</div>
+              <div class="nc-title">Q2 Project Roadmap</div>
+              <div class="nc-body">Define milestones, assign tasks, review sprint velocity for April...</div>
+              <div class="nc-foot"><span class="nc-date">Today</span><span class="nc-font">Lora</span></div>
+            </div>
+            <div class="nc">
+              <div class="nc-cat"><span class="material-icons-round">book</span>Personal</div>
+              <div class="nc-title">Gratitude Journal</div>
+              <div class="nc-body">Morning coffee, good music, the quiet before everyone wakes up...</div>
+              <div class="nc-foot"><span class="nc-date">Yesterday</span><span class="nc-font" style="font-family:'JetBrains Mono',monospace">Mono</span></div>
+            </div>
+            <div class="nc">
+              <div class="nc-cat"><span class="material-icons-round">code</span>Dev</div>
+              <div class="nc-title">API Snippets</div>
+              <div class="nc-body">Retrofit setup, Hilt DI config, Room migration scripts v2...</div>
+              <div class="nc-foot"><span class="nc-date">Mar 19</span><span class="nc-font">Jakarta</span></div>
+            </div>
+            <div class="nc">
+              <div class="nc-cat"><span class="material-icons-round">fitness_center</span>Health</div>
+              <div class="nc-title">Workout Plan</div>
+              <div class="nc-body">Mon: Pull day. Wed: Push. Fri: Legs. Weekend: Active recovery...</div>
+              <div class="nc-foot"><span class="nc-date">Mar 18</span><span class="nc-font">Serif</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features" style="background:var(--surf-2)">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="eyebrow">What's Inside</div>
+      <h2 class="section-title">Built for the way<br/><em>you think.</em></h2>
+      <p class="section-desc">Powerful features packed into a clean, lightweight Android app.</p>
+    </div>
+    <div class="features-grid">
+      <div class="fcard reveal">
+        <div class="fcard-icon"><span class="material-icons-round">person</span></div>
+        <div class="fcard-title">Account & Guest Login</div>
+        <p class="fcard-desc">Jump in as a guest instantly, or sign in to unlock cloud sync and premium features. Your choice, always.</p>
+        <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Flexible Access</div>
+      </div>
+      <div class="fcard reveal">
+        <div class="fcard-icon"><span class="material-icons-round">cloud_sync</span></div>
+        <div class="fcard-title">Offline + Online Sync</div>
+        <p class="fcard-desc">Write freely without internet. Go online and your notes sync automatically — no manual steps, ever.</p>
+        <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Always Available</div>
+      </div>
+      <div class="fcard reveal">
+        <div class="fcard-icon"><span class="material-icons-round">font_download</span></div>
+        <div class="fcard-title">Unique Font Support</div>
+        <p class="fcard-desc">8 carefully chosen fonts — serif, sans-serif, mono, and more. Each note can have its own font for a personal touch.</p>
+        <div class="fcard-tag"><span class="material-icons-round">check_circle</span>8 Handpicked Fonts</div>
+      </div>
+      <div class="fcard reveal">
+        <div class="fcard-icon"><span class="material-icons-round">palette</span></div>
+        <div class="fcard-title">Themes & Customization</div>
+        <p class="fcard-desc">Color themes, dark mode, font sizes, card styles — deep customization so the app truly feels like yours.</p>
+        <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Make It Yours</div>
+      </div>
+      <div class="fcard reveal">
+        <div class="fcard-icon"><span class="material-icons-round">backup</span></div>
+        <div class="fcard-title">Cloud Backup</div>
+        <p class="fcard-desc">Switch phones, reinstall anytime — your notes are always backed up and ready to restore instantly.</p>
+        <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Auto Backup</div>
+      </div>
+      <div class="fcard reveal">
+        <div class="fcard-icon"><span class="material-icons-round">edit_note</span></div>
+        <div class="fcard-title">Rich Text Editor</div>
+        <p class="fcard-desc">Bold, italic, headings, checklists, code blocks — formatting that keeps pace with how you think and write.</p>
+        <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Full Formatting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGIN -->
+<section class="section" id="login">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Access</div>
+      <h2 class="section-title">Your account,<br/><em>your rules.</em></h2>
+      <p class="section-desc">Log in for the full cloud experience, or dive straight in as a guest. NoteYou respects however you want to use it.</p>
+    </div>
+    <div class="login-grid">
+      <div class="login-card featured reveal">
+        <div class="lc-head">
+          <div class="lc-icon"><span class="material-icons-round">manage_accounts</span></div>
+          <div>
+            <div class="lc-badge">Recommended</div>
+            <div class="lc-title">Account Login</div>
+          </div>
+        </div>
+        <p class="lc-desc">Create a free account to unlock the full power of NoteYou — sync, backup, and cross-device access.</p>
+        <div class="perk-list">
+          <div class="perk"><span class="material-icons-round">check</span>Cloud sync across all your devices</div>
+          <div class="perk"><span class="material-icons-round">check</span>Automatic cloud backup</div>
+          <div class="perk"><span class="material-icons-round">check</span>Note history & version restore</div>
+          <div class="perk"><span class="material-icons-round">check</span>Sync your themes & preferences</div>
+        </div>
+      </div>
+      <div class="login-card guest reveal">
+        <div class="lc-head">
+          <div class="lc-icon"><span class="material-icons-round">person_outline</span></div>
+          <div>
+            <div class="lc-title">Guest Mode</div>
+          </div>
+        </div>
+        <p class="lc-desc">No sign-up needed. Start writing immediately. Everything stays on your device — fast, private, and offline.</p>
+        <div class="perk-list">
+          <div class="perk"><span class="material-icons-round">check</span>Zero setup, instant access</div>
+          <div class="perk"><span class="material-icons-round">check</span>Fully offline, fully private</div>
+          <div class="perk"><span class="material-icons-round">check</span>All local features available</div>
+          <div class="perk"><span class="material-icons-round">check</span>Upgrade to account anytime</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMIZATION -->
+<section class="section" id="customize" style="background:var(--surf-2)">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Personalize</div>
+      <h2 class="section-title">Make it <em>unmistakably</em> yours.</h2>
+      <p class="section-desc">Themes, fonts, layout, dark mode — full control over how NoteYou looks and feels.</p>
+    </div>
+    <div class="custom-layout">
+      <div class="custom-panel reveal">
+        <div>
+          <div class="option-group-label">Color Theme</div>
+          <div class="color-swatches">
+            <div class="cswatch on" style="background:#5B4FCF" data-p="#5B4FCF" data-l="#EDE9FD" onclick="applyColor(this)"></div>
+            <div class="cswatch" style="background:#0891B2" data-p="#0891B2" data-l="#E0F2FE" onclick="applyColor(this)"></div>
+            <div class="cswatch" style="background:#059669" data-p="#059669" data-l="#D1FAE5" onclick="applyColor(this)"></div>
+            <div class="cswatch" style="background:#E11D48" data-p="#E11D48" data-l="#FFE4E6" onclick="applyColor(this)"></div>
+            <div class="cswatch" style="background:#D97706" data-p="#D97706" data-l="#FEF3C7" onclick="applyColor(this)"></div>
+            <div class="cswatch" style="background:#7C3AED" data-p="#7C3AED" data-l="#EDE9FD" onclick="applyColor(this)"></div>
+          </div>
+        </div>
+        <div>
+          <div class="option-group-label">Note Font · 8 Unique Styles</div>
+          <div class="font-row">
+            <button class="font-chip on" data-f="'Lora',serif" onclick="applyFont(this)" style="font-family:'Lora',serif">Lora</button>
+            <button class="font-chip" data-f="'Plus Jakarta Sans',sans-serif" onclick="applyFont(this)">Jakarta Sans</button>
+            <button class="font-chip" data-f="'JetBrains Mono',monospace" onclick="applyFont(this)" style="font-family:'JetBrains Mono',monospace">Mono</button>
+            <button class="font-chip" data-f="Georgia,serif" onclick="applyFont(this)" style="font-family:Georgia">Georgia</button>
+            <button class="font-chip" data-f="cursive" onclick="applyFont(this)" style="font-family:cursive">Handwriting</button>
+          </div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-left">
+            <div class="opt-icon"><span class="material-icons-round">dark_mode</span></div>
+            <div><div class="opt-label">Dark Mode</div><div class="opt-sub">Easy on eyes at night</div></div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="dkSwitch" onchange="toggleDark()"/><div class="track"></div><div class="thumb"></div></label>
+        </div>
+        <div class="opt-row">
+          <div class="opt-left">
+            <div class="opt-icon"><span class="material-icons-round">format_size</span></div>
+            <div><div class="opt-label">Large Text</div><div class="opt-sub">More readable notes</div></div>
+          </div>
+          <label class="toggle"><input type="checkbox"/><div class="track"></div><div class="thumb"></div></label>
+        </div>
+        <div class="opt-row">
+          <div class="opt-left">
+            <div class="opt-icon"><span class="material-icons-round">grid_view</span></div>
+            <div><div class="opt-label">Grid Layout</div><div class="opt-sub">See more notes at once</div></div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked/><div class="track"></div><div class="thumb"></div></label>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="preview-card">
+          <div class="prev-topbar">
+            <span class="material-icons-round">arrow_back</span>
+            <span class="prev-topbar-title">My Journal</span>
+            <span class="material-icons-round">more_vert</span>
+          </div>
+          <div class="prev-body">
+            <div class="prev-title" id="prevTitle">Morning Thoughts ☀️</div>
+            <div class="prev-text" id="prevText">
+              Today I woke up with a clear head. There's something about quiet mornings that makes everything feel possible.<br/><br/>
+              <strong>Goals for today:</strong><br/>
+              ✅ Finish the project proposal<br/>
+              ✅ Call mom after lunch<br/>
+              ⬜ Read 20 pages before bed<br/><br/>
+              <em>"The secret of getting ahead is getting started."</em>
+            </div>
+          </div>
+          <div class="prev-toolbar">
+            <button class="tb-btn on">B</button>
+            <button class="tb-btn"><em>I</em></button>
+            <button class="tb-btn"><u>U</u></button>
+            <button class="tb-btn">H1</button>
+            <button class="tb-btn">H2</button>
+            <button class="tb-btn">• List</button>
+            <button class="tb-btn">☑ Todo</button>
+            <button class="tb-btn">&lt;/&gt;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYNC -->
+<section class="sync-section" id="sync">
+  <div class="container">
+    <div class="sync-inner">
+      <div class="sync-text reveal">
+        <div class="eyebrow" style="color:rgba(255,255,255,.55)">Always Connected</div>
+        <h2 class="section-title" style="color:#fff">Offline first,<br/><em style="color:#C4BCFF">cloud powered.</em></h2>
+        <p class="section-desc" style="color:rgba(255,255,255,.65)">Write anywhere, even without signal. Go online and everything syncs instantly — no manual steps, ever.</p>
+        <div class="progress-rows">
+          <div class="prog-row">
+            <div class="prog-head"><span>Sync Status</span><span>98%</span></div>
+            <div class="prog-track"><div class="prog-fill" id="pf1"></div></div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-head"><span>Cloud Backup</span><span>100%</span></div>
+            <div class="prog-track"><div class="prog-fill" id="pf2"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="sync-cards reveal">
+        <div class="sync-card">
+          <div class="sync-card-ic"><span class="material-icons-round">wifi_off</span></div>
+          <div><div class="sync-card-title">Works Offline</div><div class="sync-card-desc">Full functionality with zero internet. Write, edit, organize freely.</div></div>
+        </div>
+        <div class="sync-card">
+          <div class="sync-card-ic"><span class="material-icons-round">sync</span></div>
+          <div><div class="sync-card-title">Auto Sync</div><div class="sync-card-desc">Changes sync the moment you're back online. No action needed.</div></div>
+        </div>
+        <div class="sync-card">
+          <div class="sync-card-ic"><span class="material-icons-round">backup</span></div>
+          <div><div class="sync-card-title">Cloud Backup</div><div class="sync-card-desc">All notes backed up securely. Restore on any new device instantly.</div></div>
+        </div>
+        <div class="sync-card">
+          <div class="sync-card-ic"><span class="material-icons-round">devices</span></div>
+          <div><div class="sync-card-title">Multi-Device</div><div class="sync-card-desc">One account, every Android device. Notes always in sync.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPDATES -->
+<section class="section" id="updates">
+  <div class="container" style="max-width:760px">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Changelog</div>
+      <h2 class="section-title">What's <em>New</em></h2>
+      <p class="section-desc">Every update, every fix, every improvement — tracked here.</p>
+    </div>
+    <div class="tl">
+      <div class="tl-row reveal">
+        <div class="tl-dot active">v1.0</div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <span class="tl-ver">v1.0.0</span>
+            <span class="tl-badge">Latest</span>
+            <span class="tl-date">March 2026</span>
+          </div>
+          <div class="tl-title">Initial Release 🎉 — NoteYou is Live!</div>
+          <p class="tl-desc">First public version. A clean, powerful, customizable note-taking experience built for Android with Material Design 3.</p>
+          <div class="tl-list">
+            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Account + Guest login</div>
+            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Rich text editor with formatting</div>
+            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>20+ unique Google Fonts</div>
+            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Offline support + cloud sync</div>
+            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Material Design 3 themes + dark mode</div>
+          </div>
+        </div>
+      </div>
+      <div class="tl-row reveal">
+        <div class="tl-dot" style="font-size:1.2rem; border-style:dashed">🔜</div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <span class="tl-ver">v1.1.0</span>
+            <span class="tl-date">Coming Soon</span>
+          </div>
+          <div class="tl-title">Search, Folders & Widgets</div>
+          <p class="tl-desc">Your feedback shapes this release! Vote for features via the feedback form below.</p>
+          <div class="tl-list">
+            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>Smart full-text search</div>
+            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>Folder & tag organization</div>
+            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>Home screen widget</div>
+            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>PDF & Markdown export</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACK -->
+<section class="section-sm" id="feedback" style="background:var(--surf-2)">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Community</div>
+      <h2 class="section-title">Your voice <em>shapes</em> NoteYou.</h2>
+      <p class="section-desc">Found a bug? Have an idea? I read every message and your feedback directly influences the roadmap.</p>
+    </div>
+    <div class="feedback-grid">
+      <div class="reveal">
+        <div class="contact-cards">
+          <a href="mailto:noteyouapp@gmail.com" class="contact-card">
+            <div class="cc-icon"><span class="material-icons-round">email</span></div>
+            <div>
+              <div class="cc-label">Email</div>
+              <div class="cc-value">noteyouapp@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://github.com/Anonymous-darksider" target="_blank" class="contact-card">
+            <div class="cc-icon">
+              <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.547 1.376.203 2.394.1 2.646.64.698 1.028 1.59 1.028 2.682 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="cc-label">GitHub</div>
+              <div class="cc-value">github.com/Anonymous-darksider</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="reveal">
+        <form class="form" id="fbForm" onsubmit="submitFb(event)">
+          <div class="field">
+            <label>Your Name</label>
+            <input type="text" placeholder="e.g. Priya Patel" required/>
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" placeholder="you@email.com" required/>
+          </div>
+          <div class="field">
+            <label>Feedback Type</label>
+            <select>
+              <option value="">Choose...</option>
+              <option>🐛 Bug Report</option>
+              <option>💡 Feature Request</option>
+              <option>🎨 Design Feedback</option>
+              <option>⭐ General Review</option>
+              <option>👋 Just saying hi!</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Rate NoteYou</label>
+            <div class="stars" id="stars">
+              <span class="star" onclick="rate(1)">★</span>
+              <span class="star" onclick="rate(2)">★</span>
+              <span class="star" onclick="rate(3)">★</span>
+              <span class="star" onclick="rate(4)">★</span>
+              <span class="star" onclick="rate(5)">★</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Message</label>
+            <textarea placeholder="Share your thoughts, ideas, or bug details..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="align-self:flex-start">
+            <span class="material-icons-round">send</span>Send Feedback
+          </button>
+          <div class="snack" id="snack">
+            <span class="material-icons-round">check_circle</span>Thanks! Feedback received.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="dl-section" id="download">
+  <div class="container">
+    <div class="dl-inner reveal">
+      <div class="dl-icon"><span class="material-icons-round">android</span></div>
+      <h2 class="dl-title">Get <em>NoteYou</em><br/>for Android</h2>
+      <p class="dl-desc">Download the APK and start writing right away. No account needed to get started — guest mode lets you dive in instantly.</p>
+      <a href="#" class="dl-btn">
+        <span class="material-icons-round">download</span>Download APK · v1.0
+      </a>
+      <div class="dl-note">Android 6.0+ required · ~5 MB · Safe & verified</div>
+      <div class="dl-chips">
+        <div class="dl-chip"><span class="material-icons-round">lock</span>Secure</div>
+        <div class="dl-chip"><span class="material-icons-round">bolt</span>Lightweight</div>
+        <div class="dl-chip"><span class="material-icons-round">person_outline</span>Guest Mode</div>
+        <div class="dl-chip"><span class="material-icons-round">update</span>Regular Updates</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="footer-logo-mark">N</div>
+        <span class="footer-logo-text">Note<b>You</b></span>
+      </div>
+      <div class="footer-links">
+        <a href="#features" class="footer-link">Features</a>
+        <a href="#login" class="footer-link">Login</a>
+        <a href="#customize" class="footer-link">Customize</a>
+        <a href="#updates" class="footer-link">Updates</a>
+        <a href="#feedback" class="footer-link">Feedback</a>
+        <a href="https://github.com/Anonymous-darksider" target="_blank" class="footer-link">GitHub</a>
+      </div>
+      <div class="footer-copy">Made with ♥ · NoteYou © 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll nav raise
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('raised', scrollY > 8);
+});
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 60); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Dark mode
+let dark = false;
+function toggleDark() {
+  dark = !dark;
+  document.documentElement.toggleAttribute('data-dark', dark);
+  document.getElementById('darkBtn').querySelector('.material-icons-round').textContent = dark ? 'light_mode' : 'dark_mode';
+  document.getElementById('dkSwitch').checked = dark;
+}
+
+// Color theme
+function applyColor(el) {
+  document.querySelectorAll('.cswatch').forEach(s => s.classList.remove('on'));
+  el.classList.add('on');
+  document.documentElement.style.setProperty('--p', el.dataset.p);
+  document.documentElement.style.setProperty('--p-light', el.dataset.l);
+}
+
+// Font picker
+function applyFont(el) {
+  document.querySelectorAll('.font-chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  const f = el.dataset.f;
+  document.getElementById('prevTitle').style.fontFamily = f;
+  document.getElementById('prevText').style.fontFamily = f;
+}
+
+// Stars
+function rate(n) {
+  document.querySelectorAll('.star').forEach((s, i) => s.classList.toggle('on', i < n));
+}
+
+// Form
+function submitFb(e) {
+  e.preventDefault();
+  const snack = document.getElementById('snack');
+  snack.classList.add('show');
+  e.target.reset();
+  document.querySelectorAll('.star').forEach(s => s.classList.remove('on'));
+  setTimeout(() => snack.classList.remove('show'), 4000);
+}
+
+// Toolbar toggles
+document.querySelectorAll('.tb-btn').forEach(b => b.addEventListener('click', () => b.classList.toggle('on')));
+
+// Progress bars
+const pObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    setTimeout(() => { document.getElementById('pf1').style.width = '98%'; }, 200);
+    setTimeout(() => { document.getElementById('pf2').style.width = '100%'; }, 400);
+    pObs.disconnect();
+  }
+}, { threshold: 0.3 });
+pObs.observe(document.querySelector('.sync-section'));
+</script>
+</body>
+</html>
