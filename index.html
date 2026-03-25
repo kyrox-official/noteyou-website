@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>NoteYou – Smart Notes for Everyone</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&family=Lato:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
 <style>
 /* ─── TOKENS ─────────────────────────────── */
@@ -32,7 +32,6 @@
   --sh-2: 0 4px 16px rgba(0,0,0,.09), 0 2px 6px rgba(0,0,0,.06);
   --sh-3: 0 8px 32px rgba(0,0,0,.11), 0 4px 12px rgba(0,0,0,.07);
   --font: 'Plus Jakarta Sans', sans-serif;
-  --serif: 'Lora', serif;
   --mono: 'JetBrains Mono', monospace;
   --ease: cubic-bezier(.4,0,.2,1);
 }
@@ -85,7 +84,7 @@ ul { list-style:none; }
   width:34px; height:34px; border-radius:10px;
   background:var(--p); color:var(--on-p);
   display:flex; align-items:center; justify-content:center;
-  font-family:var(--serif); font-style:italic; font-size:1.1rem; font-weight:600;
+  font-family:system-ui, sans-serif; font-style:italic; font-size:1.1rem; font-weight:600;
   flex-shrink:0;
 }
 .nav-logo-text { font-weight:700; font-size:1.1rem; color:var(--on-bg); letter-spacing:-.01em; }
@@ -148,7 +147,7 @@ ul { list-style:none; }
 .pill-dot { width:7px; height:7px; border-radius:50%; background:var(--p); animation:pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.3)} }
 .hero-title {
-  font-family:var(--serif);
+  font-family:system-ui, sans-serif;
   font-size:clamp(2.8rem, 6vw, 5rem);
   font-weight:600; line-height:1.1;
   color:var(--on-bg); margin-bottom:20px; letter-spacing:-.02em;
@@ -166,7 +165,7 @@ ul { list-style:none; }
 }
 .hstat { padding:18px 32px; text-align:center; }
 .hstat + .hstat { border-left:1px solid var(--border); }
-.hstat-n { font-family:var(--serif); font-size:1.6rem; color:var(--p); line-height:1; margin-bottom:4px; }
+.hstat-n { font-family:system-ui, sans-serif; font-size:1.6rem; color:var(--p); line-height:1; margin-bottom:4px; font-weight:700; }
 .hstat-l { font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.07em; }
 
 /* ─── PHONE MOCKUP ─────────────────────────── */
@@ -489,7 +488,7 @@ ul { list-style:none; }
   margin-bottom:24px; border:1px solid rgba(255,255,255,.15);
 }
 .dl-icon .material-icons-round { font-size:38px; }
-.dl-title { font-family:var(--serif); font-size:clamp(2rem,5vw,3rem); color:#fff; margin-bottom:12px; line-height:1.15; }
+.dl-title { font-family:system-ui, sans-serif; font-size:clamp(2rem,5vw,3rem); color:#fff; margin-bottom:12px; line-height:1.15; }
 .dl-title em { font-style:italic; color:#C4BCFF; }
 .dl-desc { color:rgba(255,255,255,.6); font-size:1rem; max-width:460px; margin-bottom:36px; line-height:1.7; }
 .dl-btn {
@@ -515,7 +514,7 @@ ul { list-style:none; }
 .footer { background:var(--surface); border-top:1px solid var(--border); padding:28px 0; }
 .footer-inner { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; }
 .footer-logo { display:flex; align-items:center; gap:9px; }
-.footer-logo-mark { width:30px; height:30px; border-radius:8px; background:var(--p); color:var(--on-p); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-style:italic; font-size:.95rem; }
+.footer-logo-mark { width:30px; height:30px; border-radius:8px; background:var(--p); color:var(--on-p); display:flex; align-items:center; justify-content:center; font-family:system-ui, sans-serif; font-style:italic; font-size:.95rem; }
 .footer-logo-text { font-weight:700; font-size:.95rem; color:var(--on-bg); }
 .footer-logo-text b { color:var(--p); }
 .footer-links { display:flex; gap:4px; flex-wrap:wrap; }
@@ -526,7 +525,7 @@ ul { list-style:none; }
 /* ─── SECTION HEADER ─────────────────────────── */
 .sec-head { margin-bottom:48px; }
 .eyebrow { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:var(--p); margin-bottom:10px; }
-.section-title { font-family:var(--serif); font-size:clamp(1.9rem,4vw,2.9rem); color:var(--on-bg); line-height:1.12; margin-bottom:14px; }
+.section-title { font-family:system-ui, sans-serif; font-size:clamp(1.9rem,4vw,2.9rem); color:var(--on-bg); line-height:1.12; margin-bottom:14px; }
 .section-title em { font-style:italic; color:var(--p); }
 .section-desc { font-size:1rem; color:var(--muted); max-width:520px; line-height:1.75; }
 
@@ -647,7 +646,7 @@ ul { list-style:none; }
               <div class="nc-cat"><span class="material-icons-round">push_pin</span>Pinned · Work</div>
               <div class="nc-title">Q2 Project Roadmap</div>
               <div class="nc-body">Define milestones, assign tasks, review sprint velocity for April...</div>
-              <div class="nc-foot"><span class="nc-date">Today</span><span class="nc-font">Lora</span></div>
+              <div class="nc-foot"><span class="nc-date">Today</span><span class="nc-font">SF Pro</span></div>
             </div>
             <div class="nc">
               <div class="nc-cat"><span class="material-icons-round">book</span>Personal</div>
@@ -659,13 +658,13 @@ ul { list-style:none; }
               <div class="nc-cat"><span class="material-icons-round">code</span>Dev</div>
               <div class="nc-title">API Snippets</div>
               <div class="nc-body">Retrofit setup, Hilt DI config, Room migration scripts v2...</div>
-              <div class="nc-foot"><span class="nc-date">Mar 19</span><span class="nc-font">Jakarta</span></div>
+              <div class="nc-foot"><span class="nc-date">Mar 19</span><span class="nc-font">Roboto</span></div>
             </div>
             <div class="nc">
               <div class="nc-cat"><span class="material-icons-round">fitness_center</span>Health</div>
               <div class="nc-title">Workout Plan</div>
               <div class="nc-body">Mon: Pull day. Wed: Push. Fri: Legs. Weekend: Active recovery...</div>
-              <div class="nc-foot"><span class="nc-date">Mar 18</span><span class="nc-font">Serif</span></div>
+              <div class="nc-foot"><span class="nc-date">Mar 18</span><span class="nc-font">Lato</span></div>
             </div>
           </div>
         </div>
@@ -697,7 +696,7 @@ ul { list-style:none; }
       <div class="fcard reveal">
         <div class="fcard-icon"><span class="material-icons-round">font_download</span></div>
         <div class="fcard-title">Unique Font Support</div>
-        <p class="fcard-desc">Pick from a curated collection of handpicked fonts — serif, sans-serif, monospace, and decorative. Set a different font per note for a personal touch.</p>
+        <p class="fcard-desc">Pick from a curated collection of handpicked fonts — SF Pro, Roboto, Lato, and Monospace. Set a different font per note for a personal touch.</p>
         <div class="fcard-tag"><span class="material-icons-round">check_circle</span>Handpicked Fonts</div>
       </div>
       <div class="fcard reveal">
@@ -788,11 +787,10 @@ ul { list-style:none; }
         <div>
           <div class="option-group-label">Note Font</div>
           <div class="font-row">
-            <button class="font-chip on" data-f="'Lora',serif" onclick="applyFont(this)" style="font-family:'Lora',serif">Lora</button>
-            <button class="font-chip" data-f="'Plus Jakarta Sans',sans-serif" onclick="applyFont(this)">Jakarta Sans</button>
-            <button class="font-chip" data-f="'JetBrains Mono',monospace" onclick="applyFont(this)" style="font-family:'JetBrains Mono',monospace">Mono</button>
-            <button class="font-chip" data-f="Georgia,serif" onclick="applyFont(this)" style="font-family:Georgia">Georgia</button>
-            <button class="font-chip" data-f="cursive" onclick="applyFont(this)" style="font-family:cursive">Handwriting</button>
+            <button class="font-chip on" data-f="system-ui, -apple-system, sans-serif" onclick="applyFont(this)" style="font-family:system-ui, -apple-system, sans-serif">SF Pro</button>
+            <button class="font-chip" data-f="'Roboto', sans-serif" onclick="applyFont(this)" style="font-family:'Roboto', sans-serif">Roboto</button>
+            <button class="font-chip" data-f="'Lato', sans-serif" onclick="applyFont(this)" style="font-family:'Lato', sans-serif">Lato</button>
+            <button class="font-chip" data-f="'JetBrains Mono', monospace" onclick="applyFont(this)" style="font-family:'JetBrains Mono', monospace">Monospace</button>
           </div>
         </div>
         <div class="opt-row">
@@ -1028,9 +1026,9 @@ ul { list-style:none; }
           <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.547 1.376.203 2.394.1 2.646.64.698 1.028 1.59 1.028 2.682 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
           Download From GitHub
         </a>
-        <a href="#" class="dl-btn" style="background: #24CC63; color: #fff;">
-          <span class="material-icons-round">android</span>
-          Download From APKPure
+        <a href="#" onclick="alert('NoteYou will be available on APKPure very soon! For now, please download the latest version from GitHub.'); return false;" class="dl-btn" style="background: #24CC63; color: #fff; opacity: 0.85;">
+          <span class="material-icons-round">hourglass_empty</span>
+          Coming Soon on APKPure
         </a>
       </div>
 
@@ -1059,6 +1057,7 @@ ul { list-style:none; }
         <a href="#updates" class="footer-link">Updates</a>
         <a href="#feedback" class="footer-link">Feedback</a>
         <a href="https://github.com/kyrox-official" target="_blank" class="footer-link">GitHub</a>
+        <a href="policies.html" class="footer-link">Legal Policies</a>
       </div>
       <div class="footer-copy">Made with ♥ · NoteYou © 2026</div>
     </div>
