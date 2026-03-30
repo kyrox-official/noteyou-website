@@ -513,7 +513,7 @@ ul { list-style:none; }
   border-radius:var(--r-full); padding:15px 36px;
   font-size:1rem; font-weight:700; transition:all .25s;
   box-shadow:0 8px 32px rgba(0,0,0,.25);
-  border:none; cursor:pointer; font-family:var(--font);
+  border:none; cursor:pointer; font-family:var(--font); text-decoration: none;
 }
 .dl-btn:hover { transform:translateY(-3px); box-shadow:0 16px 48px rgba(0,0,0,.3); }
 .dl-btn .material-icons-round { font-size:22px; }
@@ -588,9 +588,9 @@ ul { list-style:none; }
         <button class="icon-btn" id="darkBtn" onclick="toggleDark()" title="Toggle dark mode">
           <span class="material-icons-round">dark_mode</span>
         </button>
-        <button onclick="openDlModal()" class="btn btn-primary">
+        <a href="#download" class="btn btn-primary">
           <span class="material-icons-round">download</span>Download Latest Version
-        </button>
+        </a>
       </div>
     </div>
   </div>
@@ -607,9 +607,9 @@ ul { list-style:none; }
       <h1 class="hero-title reveal">Notes that feel<br/><em>truly yours</em></h1>
       <p class="hero-desc reveal">NoteYou is a text-based productivity app. Write offline or sync your text notes across devices. Pick your fonts, personalize your theme. NoteYou is powerful, beautiful, and completely yours.</p>
       <div class="hero-ctas reveal">
-        <button onclick="openDlModal()" class="btn btn-primary">
+        <a href="#download" class="btn btn-primary">
           <span class="material-icons-round">download</span>Download Latest Version
-        </button>
+        </a>
         <a href="#features" class="btn btn-tonal">
           <span class="material-icons-round">explore</span>Explore Features
         </a>
@@ -1053,7 +1053,7 @@ ul { list-style:none; }
         </a>
       </div>
 
-      <div class="dl-note">Android 6.0+ required · Ultra Lightweight (~5 MB) · Safe & verified</div>
+      <div class="dl-note">Android 6.0+ required · Ultra Lightweight · Safe & verified</div>
       <div class="dl-chips">
         <div class="dl-chip"><span class="material-icons-round">lock</span>Secure</div>
         <div class="dl-chip"><span class="material-icons-round">block</span>No Ads</div>
@@ -1100,7 +1100,7 @@ ul { list-style:none; }
         <span class="material-icons-round">smartphone</span>
         <div>
           <div class="dl-opt-title">arm64-v8a (Recommended)</div>
-          <div class="dl-opt-sub">For almost all modern Android phones (~5 MB)</div>
+          <div class="dl-opt-sub">For almost all modern Android phones</div>
         </div>
       </a>
       
@@ -1108,7 +1108,7 @@ ul { list-style:none; }
         <span class="material-icons-round">phone_android</span>
         <div>
           <div class="dl-opt-title">armeabi-v7a</div>
-          <div class="dl-opt-sub">For older 32-bit Android phones (~5 MB)</div>
+          <div class="dl-opt-sub">For older 32-bit Android phones</div>
         </div>
       </a>
 
@@ -1116,7 +1116,7 @@ ul { list-style:none; }
         <span class="material-icons-round">laptop_chromebook</span>
         <div>
           <div class="dl-opt-title">x86_64</div>
-          <div class="dl-opt-sub">For Emulators & Intel/Chromebook devices (~5 MB)</div>
+          <div class="dl-opt-sub">For Emulators & Intel/Chromebook devices</div>
         </div>
       </a>
     </div>
