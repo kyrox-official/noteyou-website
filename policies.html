@@ -15,17 +15,22 @@
     --border: #D8D5EC;
     --font: 'Plus Jakarta Sans', sans-serif;
   }
-  body { font-family: var(--font); background: var(--bg); color: var(--on-bg); line-height: 1.7; margin: 0; padding: 0; }
-  .container { max-width: 800px; margin: 0 auto; padding: 60px 24px; }
+  body { font-family: var(--font); background: var(--bg); color: var(--on-bg); line-height: 1.8; margin: 0; padding: 0; }
+  .container { max-width: 850px; margin: 0 auto; padding: 60px 24px; }
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; box-shadow: 0 4px 16px rgba(0,0,0,.05); }
-  h1 { font-size: 2.2rem; color: var(--p); margin-top: 0; margin-bottom: 30px; }
+  h1 { font-size: 2.2rem; color: var(--p); margin-top: 0; margin-bottom: 10px; }
+  .update-date { font-size: 0.85rem; color: var(--muted); margin-bottom: 30px; display: block; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
   h2 { font-size: 1.4rem; color: var(--on-bg); margin-top: 40px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
-  p, ul { font-size: 1rem; color: var(--muted); }
+  h3 { font-size: 1.1rem; color: var(--on-bg); margin-top: 25px; margin-bottom: 10px; }
+  p, ul { font-size: 0.95rem; color: var(--muted); }
   ul { padding-left: 20px; }
-  li { margin-bottom: 10px; }
+  li { margin-bottom: 12px; }
+  strong { color: var(--on-bg); }
   a { color: var(--p); text-decoration: none; font-weight: 600; }
   a:hover { text-decoration: underline; }
   .nav-back { display: inline-block; margin-bottom: 20px; color: var(--p); font-weight: 600; }
+  .highlight-box { background: rgba(225, 29, 72, 0.05); border-left: 4px solid #E11D48; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+  .highlight-box p { color: #B00020; margin: 0; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -35,30 +40,103 @@
   
   <div class="card">
     <h1>NoteYou Legal Policies</h1>
-    <p>Last Updated: March 2026</p>
+    <span class="update-date">Last Updated: March 2026</span>
 
-    <h2>1. Privacy Policy</h2>
-    <p>Your privacy is our top priority. NoteYou is built on a strict <strong>Zero-Knowledge Architecture</strong>.</p>
+    <p>Welcome to NoteYou ("we," "our," or "us"). By downloading, accessing, or using the NoteYou application and website, you agree to be bound by these Legal Policies, including our Privacy Policy, Terms of Service, and Refund Policy. Please read this entire document carefully before using our services.</p>
+
+    <h2>1. Privacy Policy & Data Security</h2>
+    <p>Your privacy is our highest priority. NoteYou operates on a strict <strong>Zero-Knowledge Architecture</strong>.</p>
+    
+    <h3>1.1. Information We Collect</h3>
     <ul>
-      <li><strong>End-to-End Encryption (E2EE):</strong> All your personal notes and cloud backups are encrypted locally on your device using military-grade AES-256-GCM. We use Firebase to securely manage the encrypted data. Only you can read your notes; we cannot access, read, sell, or share your content.</li>
-      <li><strong>Biometric Data:</strong> If you use the App Lock feature, your fingerprint or face data is processed securely and entirely offline by your device's native hardware. We do not collect or store biometric data on our servers.</li>
-      <li><strong>Payment Information:</strong> Premium payments are processed securely by Razorpay. We do not store your credit card or sensitive banking details on our servers.</li>
+      <li><strong>Account Information:</strong> When you register for cloud sync, we collect your email address to create and manage your account via Google Firebase.</li>
+      <li><strong>Device & Diagnostics Data:</strong> To improve app stability, we may automatically collect anonymous diagnostic data (e.g., app crash logs, device model, operating system version). This data contains no personally identifiable information and no note content.</li>
+      <li><strong>Content Data (Encrypted):</strong> If you use the sync feature, the encrypted ciphertext of your notes is stored on our servers. We do not collect or store unencrypted note data.</li>
     </ul>
+
+    <h3>1.2. End-to-End Encryption (E2EE) Mechanism</h3>
+    <ul>
+      <li><strong>How It Works:</strong> When you secure your account, you create a personal <strong>Encryption PIN</strong>. Our app generates a cryptographic 'Salt' stored on our servers. Your local Encryption PIN combined with this Server Salt generates a secure <strong>Master Key</strong> directly on your device.</li>
+      <li><strong>Zero-Knowledge Proof:</strong> Your Encryption PIN is <strong>NEVER</strong> transmitted to, nor stored on, our servers. When you log out, the PIN and the Master Key are permanently wiped from your device's local memory.</li>
+      <li><strong>Absolute Privacy:</strong> Because we do not have your PIN, we cannot generate your Master Key. It is mathematically and technically impossible for us, our developers, or any third party to access, read, decrypt, or share your notes.</li>
+    </ul>
+
+    <h3>1.3. Incorrect PIN & Decryption Failures</h3>
+    <ul>
+      <li>If an incorrect Encryption PIN is entered, the system will mathematically generate an invalid Master Key. Consequently, your notes will fail to decrypt.</li>
+      <li>Because we do not store your PIN, <strong>the app cannot verify or notify you if the PIN is "wrong" prior to decryption.</strong> If an incorrect PIN is provided, your notes will simply not appear, or will remain as unreadable encrypted text. This is an intentional security design, not a software bug.</li>
+    </ul>
+
+    <h3>1.4. Biometrics & Local Storage</h3>
+    <ul>
+      <li><strong>App Lock:</strong> If enabled, fingerprint or facial recognition data is processed entirely offline by your device's native hardware OS (Android). NoteYou does not collect, transmit, or store biometric data.</li>
+    </ul>
+
+    <h3>1.5. Third-Party Services</h3>
+    <ul>
+      <li><strong>Firebase:</strong> We use Google Firebase for secure authentication and to host the encrypted ciphertext. Firebase infrastructure complies with strict industry security standards.</li>
+      <li><strong>Razorpay:</strong> Premium payments are processed securely by Razorpay. We do not collect, process, or store your credit/debit card numbers, UPI IDs, or sensitive banking details.</li>
+    </ul>
+
+    <h3>1.6. Children's Privacy</h3>
+    <p>Our Services are not directed to individuals under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that a child under 13 has provided us with personal information, we will take steps to delete such information.</p>
 
     <h2>2. Terms & Conditions</h2>
-    <p>By using the NoteYou app, you agree to the following terms:</p>
+    
+    <div class="highlight-box">
+      <p>CRITICAL LEGAL WARNING: NoteYou developers and administrators have NO ABILITY to recover, reset, bypass, or retrieve your Encryption PIN. If you forget your PIN, your encrypted data is permanently and irreversibly lost. We are not liable for any such data loss.</p>
+    </div>
+
+    <h3>2.1. User Responsibility & Data Loss</h3>
     <ul>
-      <li><strong>Master PIN Responsibility:</strong> Your Master PIN is used to generate your encryption key. <strong>It is never sent to our servers.</strong> If you forget your Master PIN, your data is permanently inaccessible. We cannot recover or reset your PIN under any circumstances.</li>
-      <li><strong>Data Retention & Grace Period:</strong> If your NoteYou Premium subscription expires, your encrypted cloud data is safely held for a grace period of 180 days. On the 181st day, your cloud backup will be permanently and irreversibly wiped from our servers to maintain privacy and server health. Local data on your device will remain untouched.</li>
-      <li><strong>Acceptable Use:</strong> Users must use the app responsibly. You agree not to use the NoteYou application for any illegal, harmful, or unauthorized activities. Any misuse of the app may result in the termination of your account.</li>
-      <li><strong>Service Availability:</strong> While we strive for 100% uptime, cloud sync features depend on network connectivity and server availability.</li>
+      <li>By using NoteYou, you explicitly acknowledge and accept that <strong>YOU are solely responsible for remembering and safeguarding your Encryption PIN.</strong></li>
+      <li>We shall not be held liable for any loss of data, financial loss, emotional distress, or business interruption resulting from a forgotten PIN, lost device, hardware failure, app uninstallation without prior backup, or synchronization failure.</li>
+      <li>We are legally indemnified against any claims regarding inaccessible data due to user error, incorrect PIN entries, or lost credentials.</li>
     </ul>
 
-    <h2>3. Refund & Cancellation Policy</h2>
-    <p>We offer a strict <strong>No Refund Policy</strong>. All purchases made for NoteYou Premium are final and non-refundable. Please ensure that you have tested the free features of the app before making a purchase.</p>
+    <h3>2.2. Intellectual Property</h3>
+    <ul>
+      <li><strong>Your Content:</strong> You retain all rights and ownership to the text, notes, and content you create within NoteYou.</li>
+      <li><strong>Our App:</strong> NoteYou, including its code, design, logos, and UI/UX, is the exclusive intellectual property of the NoteYou developers. You may not copy, modify, distribute, sell, or lease any part of our application.</li>
+    </ul>
 
-    <h2>4. Contact Us</h2>
-    <p>If you have any questions, issues, or need support regarding your premium purchase or the app, please reach out to us:</p>
+    <h3>2.3. Acceptable Use Policy</h3>
+    <ul>
+      <li>You agree to use NoteYou only for lawful purposes. You must not use the app to store, distribute, or promote illegal content, malware, or material that violates the rights of others.</li>
+      <li>Attempting to reverse-engineer, decompile, hack, or disrupt the app's server infrastructure will result in immediate termination of your account and potential legal action.</li>
+    </ul>
+
+    <h3>2.4. Data Retention, Expiry, & Wiping</h3>
+    <ul>
+      <li><strong>Free/Guest Users:</strong> Notes are stored locally. If you uninstall the app or clear app data without setting up a cloud account, your data is permanently deleted.</li>
+      <li><strong>Premium Users (Grace Period):</strong> If your NoteYou Premium subscription expires, we will safely hold your encrypted cloud data for a grace period of <strong>180 days</strong>. On the 181st day, your cloud backup will be permanently wiped from our servers. Local data on your device will remain untouched.</li>
+    </ul>
+
+    <h3>2.5. Termination of Service</h3>
+    <p>We reserve the right to suspend or terminate your access to NoteYou at any time, without prior notice or liability, for any reason, including but not limited to a breach of these Terms. Upon termination, your right to use the Service will immediately cease.</p>
+
+    <h3>2.6. Disclaimer of Warranties & Limitation of Liability</h3>
+    <ul>
+      <li><strong>"AS IS" Clause:</strong> NoteYou is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</li>
+      <li>We do not guarantee that the app will be completely error-free, secure from all cyber threats, uninterrupted, or perfectly compatible with all future Android OS updates.</li>
+      <li><strong>Limitation of Liability:</strong> To the maximum extent permitted by applicable law, in no event shall NoteYou, its creator(s), affiliates, or partners be liable for any indirect, incidental, special, consequential, or punitive damages. Our total liability to you for any claims arising from your use of the app shall not exceed the amount you paid for the app's premium features in the past 12 months, or $0 if no purchase was made.</li>
+    </ul>
+
+    <h3>2.7. Governing Law & Jurisdiction</h3>
+    <p>These Legal Policies shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions. Any legal disputes arising out of or related to the use of NoteYou shall be subject to the exclusive jurisdiction of the courts located in New Delhi, India.</p>
+
+    <h2>3. Refund & Cancellation Policy</h2>
+    <ul>
+      <li><strong>No Refunds:</strong> NoteYou operates on a strict <strong>No Refund Policy</strong>. All purchases made for NoteYou Premium (via Razorpay, Google Play, or any other payment gateway) are final, non-refundable, and non-transferable.</li>
+      <li><strong>Try Before You Buy:</strong> We provide a fully functional free version (Guest Mode/Basic Account) so users can thoroughly test the app's core features, user interface, and performance before purchasing Premium. By making a purchase, you acknowledge that you are satisfied with the app's current functionality.</li>
+      <li><strong>Cancellations:</strong> You may cancel your active subscription at any time to prevent future recurring billing. However, no prorated refunds will be issued for unused time in the current billing cycle. You will retain access to premium features until the end of your current paid period.</li>
+    </ul>
+
+    <h2>4. Changes to These Policies</h2>
+    <p>We reserve the right to modify or replace these Legal Policies at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. Continued use of the NoteYou app after any such changes constitutes your binding acceptance of the new terms.</p>
+
+    <h2>5. Contact Information</h2>
+    <p>If you have any questions, disputes, or require support regarding your account, privacy, or premium purchase, please contact us:</p>
     <ul>
       <li><strong>Email:</strong> <a href="mailto:noteyouapp@gmail.com">noteyouapp@gmail.com</a></li>
       <li><strong>GitHub Profile:</strong> <a href="https://github.com/kyrox-official" target="_blank">github.com/kyrox-official</a></li>
