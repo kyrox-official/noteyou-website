@@ -124,6 +124,22 @@ ul { list-style:none; }
 .btn-ghost { background:transparent; color:var(--muted); border:none; }
 .btn-ghost:hover { background:var(--surf-2); color:var(--on-bg); }
 
+/* ─── MODAL (POPUP) FOR DOWNLOAD ──────────── */
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(4px); z-index:1000; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .3s ease; }
+.modal-overlay.active { opacity:1; pointer-events:auto; }
+.modal-card { background:var(--surface); width:90%; max-width:420px; border-radius:var(--r-xl); padding:24px; transform:translateY(20px); transition:transform .3s ease; box-shadow:var(--sh-3); border:1px solid var(--border); }
+.modal-overlay.active .modal-card { transform:translateY(0); }
+.modal-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.modal-head h3 { font-size:1.25rem; color:var(--on-bg); margin:0; }
+.close-btn { background:transparent; border:none; color:var(--muted); cursor:pointer; padding:5px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+.close-btn:hover { background:var(--surf-2); color:var(--error); }
+.dl-options { display:flex; flex-direction:column; gap:12px; margin-top: 20px; }
+.dl-opt-btn { display:flex; align-items:center; gap:16px; padding:16px; border:1px solid var(--border); border-radius:var(--r-lg); text-decoration:none; color:var(--on-bg); transition:all .2s; background:var(--surface); }
+.dl-opt-btn:hover { border-color:var(--p); background:var(--surf-2); transform:translateY(-2px); box-shadow:var(--sh-1); }
+.dl-opt-btn .material-icons-round { font-size:28px; color:var(--p); }
+.dl-opt-title { font-weight:700; font-size:.95rem; margin-bottom: 2px; }
+.dl-opt-sub { font-size:.75rem; color:var(--muted); line-height:1.4; }
+
 /* ─── HERO ─────────────────────────────────── */
 .hero {
   padding:140px 0 96px;
@@ -497,6 +513,7 @@ ul { list-style:none; }
   border-radius:var(--r-full); padding:15px 36px;
   font-size:1rem; font-weight:700; transition:all .25s;
   box-shadow:0 8px 32px rgba(0,0,0,.25);
+  border:none; cursor:pointer; font-family:var(--font);
 }
 .dl-btn:hover { transform:translateY(-3px); box-shadow:0 16px 48px rgba(0,0,0,.3); }
 .dl-btn .material-icons-round { font-size:22px; }
@@ -571,9 +588,9 @@ ul { list-style:none; }
         <button class="icon-btn" id="darkBtn" onclick="toggleDark()" title="Toggle dark mode">
           <span class="material-icons-round">dark_mode</span>
         </button>
-        <a href="#download" class="btn btn-primary">
+        <button onclick="openDlModal()" class="btn btn-primary">
           <span class="material-icons-round">download</span>Download Latest Version
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -585,14 +602,14 @@ ul { list-style:none; }
   <div class="container">
     <div class="hero-inner">
       <div class="hero-pill reveal">
-        <div class="pill-dot"></div>Free Android App · v1.0 Out Now
+        <div class="pill-dot"></div>Free Android App · v1.3 Out Now
       </div>
       <h1 class="hero-title reveal">Notes that feel<br/><em>truly yours</em></h1>
       <p class="hero-desc reveal">NoteYou is a text-based productivity app. Write offline or sync your text notes across devices. Pick your fonts, personalize your theme. NoteYou is powerful, beautiful, and completely yours.</p>
       <div class="hero-ctas reveal">
-        <a href="#download" class="btn btn-primary">
+        <button onclick="openDlModal()" class="btn btn-primary">
           <span class="material-icons-round">download</span>Download Latest Version
-        </a>
+        </button>
         <a href="#features" class="btn btn-tonal">
           <span class="material-icons-round">explore</span>Explore Features
         </a>
@@ -898,21 +915,21 @@ ul { list-style:none; }
     </div>
     <div class="tl">
       <div class="tl-row reveal">
-        <div class="tl-dot active">v1.0</div>
+        <div class="tl-dot active">v1.3</div>
         <div class="tl-card">
           <div class="tl-meta">
-            <span class="tl-ver">v1.0.0</span>
+            <span class="tl-ver">v1.3.108.2</span>
             <span class="tl-badge">Latest</span>
-            <span class="tl-date">March 2026</span>
+            <span class="tl-date">Current</span>
           </div>
-          <div class="tl-title">Initial Release 🎉 — NoteYou is Live!</div>
-          <p class="tl-desc">First public version. A clean, powerful, customizable note-taking experience built for Android with Material Design 3.</p>
+          <div class="tl-title">Performance Boost & UI Enhancements 🚀</div>
+          <p class="tl-desc">We've squashed bugs and improved the core engine for a flawless experience. NoteYou is now faster, safer, and smoother than ever.</p>
           <div class="tl-list">
-            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Account + Guest login</div>
-            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Rich text editor with formatting</div>
-            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Curated selection of unique fonts</div>
-            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Offline support + seamless note sync</div>
-            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Material Design 3 themes + dark mode</div>
+            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Significantly improved App Launch speed</div>
+            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Enhanced sync stability for spotty networks</div>
+            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Fixed minor UI glitches in Dark Mode</div>
+            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Added split architecture support for smaller app sizes</div>
+            <div class="tl-item-row"><span class="material-icons-round">add_circle</span>Optimized battery usage during offline writing</div>
           </div>
         </div>
       </div>
@@ -920,16 +937,16 @@ ul { list-style:none; }
         <div class="tl-dot" style="font-size:1.2rem; border-style:dashed">🔜</div>
         <div class="tl-card">
           <div class="tl-meta">
-            <span class="tl-ver">v1.1.0</span>
+            <span class="tl-ver">v1.4.0</span>
             <span class="tl-date">Coming Soon</span>
           </div>
-          <div class="tl-title">Search, Folders & Widgets</div>
-          <p class="tl-desc">Your feedback shapes this release! Vote for features via the feedback form below.</p>
+          <div class="tl-title">Smart Organization & Widgets 🧠</div>
+          <p class="tl-desc">Get ready to take your productivity to the next level with our highly anticipated upcoming features. Vote for your favorites via the feedback form!</p>
           <div class="tl-list">
-            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>Smart full-text search</div>
-            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>Folder & tag organization</div>
-            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>Home screen widget</div>
-            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>PDF & Markdown export</div>
+            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>Interactive Home Screen Widgets</div>
+            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>Nested Folders & Tagging system</div>
+            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>PDF & Markdown Export capabilities</div>
+            <div class="tl-item-row"><span class="material-icons-round" style="color:var(--muted)">schedule</span>Advanced Text Search functionality</div>
           </div>
         </div>
       </div>
@@ -1026,17 +1043,17 @@ ul { list-style:none; }
       <p class="dl-desc">Free forever. No ads. No hidden fees. NoteYou is a secure text-based productivity app. No account required to get started.</p>
       
       <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px;">
-        <a href="https://github.com/kyrox-official/noteyou-website/releases/latest/download/NoteYou.apk" class="dl-btn">
+        <button onclick="openDlModal()" class="dl-btn">
           <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.547 1.376.203 2.394.1 2.646.64.698 1.028 1.59 1.028 2.682 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
           Download From GitHub
-        </a>
+        </button>
         <a href="#" onclick="alert('NoteYou will be available on APKPure very soon! For now, please download the latest version from GitHub.'); return false;" class="dl-btn" style="background: #24CC63; color: #fff; opacity: 0.85;">
           <span class="material-icons-round">hourglass_empty</span>
           Coming Soon on APKPure
         </a>
       </div>
 
-      <div class="dl-note">Android 6.0+ required · ~5 MB · Safe & verified</div>
+      <div class="dl-note">Android 6.0+ required · Ultra Lightweight (~5 MB) · Safe & verified</div>
       <div class="dl-chips">
         <div class="dl-chip"><span class="material-icons-round">lock</span>Secure</div>
         <div class="dl-chip"><span class="material-icons-round">block</span>No Ads</div>
@@ -1068,7 +1085,55 @@ ul { list-style:none; }
   </div>
 </footer>
 
+<div class="modal-overlay" id="dlModal" onclick="closeDlModal(event)">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3>Select APK Version</h3>
+      <button class="close-btn" onclick="document.getElementById('dlModal').classList.remove('active')">
+        <span class="material-icons-round">close</span>
+      </button>
+    </div>
+    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:10px;">Choose the version that matches your Android device's processor to download the highly optimized, lightweight APK.</p>
+    
+    <div class="dl-options">
+      <a href="https://github.com/kyrox-official/noteyou-website/releases/latest/download/NoteYou-arm64-v8a.apk" class="dl-opt-btn">
+        <span class="material-icons-round">smartphone</span>
+        <div>
+          <div class="dl-opt-title">arm64-v8a (Recommended)</div>
+          <div class="dl-opt-sub">For almost all modern Android phones (~5 MB)</div>
+        </div>
+      </a>
+      
+      <a href="https://github.com/kyrox-official/noteyou-website/releases/latest/download/NoteYou-armeabi-v7a.apk" class="dl-opt-btn">
+        <span class="material-icons-round">phone_android</span>
+        <div>
+          <div class="dl-opt-title">armeabi-v7a</div>
+          <div class="dl-opt-sub">For older 32-bit Android phones (~5 MB)</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/kyrox-official/noteyou-website/releases/latest/download/NoteYou-x86_64.apk" class="dl-opt-btn">
+        <span class="material-icons-round">laptop_chromebook</span>
+        <div>
+          <div class="dl-opt-title">x86_64</div>
+          <div class="dl-opt-sub">For Emulators & Intel/Chromebook devices (~5 MB)</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
 <script>
+// Modal Logic
+function openDlModal() {
+  document.getElementById('dlModal').classList.add('active');
+}
+function closeDlModal(e) {
+  if (e.target.id === 'dlModal') {
+    document.getElementById('dlModal').classList.remove('active');
+  }
+}
+
 // Scroll nav raise
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('raised', scrollY > 8);
@@ -1120,17 +1185,14 @@ function submitFb(e) {
   e.preventDefault(); // Page refresh hone se roke
   
   const form = e.target;
-  // User ne jo email daala hai usko nikalna aur lowercase karna
   const emailInput = form.querySelector('input[name="Email"]').value.toLowerCase();
   
-  // 1. Strict Format Check (Regex) - Asli format check karna
   const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
   if (!emailRegex.test(emailInput)) {
     alert("Please sahi email format daalein (jaise naam@gmail.com).");
     return;
   }
 
-  // 2. Fake aur Dummy Domains ko block karna
   const blockedDomains = ['test.com', 'example.com', 'dummy.com', 'asdf.com', '123.com', 'fake.com', 'mail.com'];
   const domainParts = emailInput.split('@');
   
@@ -1138,35 +1200,30 @@ function submitFb(e) {
     const domain = domainParts[1];
     if (blockedDomains.includes(domain)) {
       alert("Please ek real email address daaliye! Ye dummy email allow nahi hai.");
-      return; // Agar fake hai toh form submit nahi hoga
+      return; 
     }
   }
 
   const btn = document.getElementById('submitBtn');
   const snack = document.getElementById('snack');
   
-  // Button text change karein (Sending...)
   btn.innerHTML = '<span class="material-icons-round">hourglass_empty</span>Sending...';
   btn.style.opacity = '0.7';
   btn.disabled = true;
 
-  // Form ka data collect karein
   const formData = new FormData(form);
 
-  // Formsubmit ki API par data bhejein
   fetch("https://formsubmit.co/ajax/noteyouapp@gmail.com", {
     method: "POST",
     body: formData
   })
   .then(response => response.json())
   .then(data => {
-    // Success hone par Snack bar dikhayein
     snack.classList.add('show');
     form.reset();
     document.querySelectorAll('.star').forEach(s => s.classList.remove('on'));
-    document.getElementById('ratingValue').value = "Not Rated"; // reset rating
+    document.getElementById('ratingValue').value = "Not Rated";
     
-    // Button ko wapas normal karein
     btn.innerHTML = '<span class="material-icons-round">send</span>Send Feedback';
     btn.style.opacity = '1';
     btn.disabled = false;
