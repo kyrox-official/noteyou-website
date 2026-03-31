@@ -124,6 +124,22 @@ ul { list-style:none; }
 .btn-ghost { background:transparent; color:var(--muted); border:none; }
 .btn-ghost:hover { background:var(--surf-2); color:var(--on-bg); }
 
+/* ─── MODAL (POPUP) FOR DOWNLOAD ──────────── */
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(4px); z-index:1000; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .3s ease; }
+.modal-overlay.active { opacity:1; pointer-events:auto; }
+.modal-card { background:var(--surface); width:90%; max-width:420px; border-radius:var(--r-xl); padding:24px; transform:translateY(20px); transition:transform .3s ease; box-shadow:var(--sh-3); border:1px solid var(--border); }
+.modal-overlay.active .modal-card { transform:translateY(0); }
+.modal-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.modal-head h3 { font-size:1.25rem; color:var(--on-bg); margin:0; }
+.close-btn { background:transparent; border:none; color:var(--muted); cursor:pointer; padding:5px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+.close-btn:hover { background:var(--surf-2); color:var(--error); }
+.dl-options { display:flex; flex-direction:column; gap:12px; margin-top: 20px; }
+.dl-opt-btn { display:flex; align-items:center; gap:16px; padding:16px; border:1px solid var(--border); border-radius:var(--r-lg); text-decoration:none; color:var(--on-bg); transition:all .2s; background:var(--surface); }
+.dl-opt-btn:hover { border-color:var(--p); background:var(--surf-2); transform:translateY(-2px); box-shadow:var(--sh-1); }
+.dl-opt-btn .material-icons-round { font-size:28px; color:var(--p); }
+.dl-opt-title { font-weight:700; font-size:.95rem; margin-bottom: 2px; }
+.dl-opt-sub { font-size:.75rem; color:var(--muted); line-height:1.4; }
+
 /* ─── HERO ─────────────────────────────────── */
 .hero {
   padding:140px 0 96px;
@@ -607,9 +623,14 @@ ul { list-style:none; }
 
 
 
+
         
 
-/* ─── version  Mension─────────────────────────────── */
+
+
+
+        
+
 Free Android App · v1.3.109 Out Now
       </div>
       <h1 class="hero-title reveal">Notes that feel<br/><em>truly yours</em></h1>
@@ -932,7 +953,10 @@ Free Android App · v1.3.109 Out Now
             
 
 
-/* ─── version  Mension─────────────────────────────── */
+
+            
+
+
 <span class="tl-ver">v1.3.109</span>
             <span class="tl-badge">Latest</span>
             <span class="tl-date">Current</span>
@@ -954,11 +978,17 @@ Free Android App · v1.3.109 Out Now
           <div class="tl-meta">
 
 
+
+
+
+
+            
+
+
             
 
 
 
-/* ─── version  Mension─────────────────────────────── */
 <span class="tl-ver">v1.4.0</span>
             <span class="tl-date">Coming Soon</span>
           </div>
