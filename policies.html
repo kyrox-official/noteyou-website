@@ -39,107 +39,189 @@
   <a href="index.html" class="nav-back">← Back to Home</a>
   
   <div class="card">
-    <h1>NoteYou Legal Policies</h1>
-    <span class="update-date">Last Updated: March 2026</span>
+    <h1>Note You Legal Policies [cite: 1]</h1>
+    <span class="update-date">Last Updated: March 2026 [cite: 2]</span>
 
-    <p>Welcome to NoteYou ("we," "our," or "us"). By downloading, accessing, or using the NoteYou application and website, you agree to be bound by these Legal Policies, including our Privacy Policy, Terms of Service, and Refund Policy. Please read this entire document carefully before using our services.</p>
+    <p>Welcome to Note You ("Note You," "we," "our," or "us")[cite: 3]. These Legal Policies govern your access to and use of the Note You mobile application, website, and related services (collectively, the "Services")[cite: 4]. By downloading, accessing, or using Note You, you agree to be bound by these Legal Policies, including our Privacy Policy, Terms of Service, and Refund & Cancellation Policy[cite: 5]. If you do not agree with these terms, please discontinue use of the Services[cite: 6].</p>
 
-    <h2>1. Privacy Policy & Data Security</h2>
-    <p>Your privacy is our highest priority. NoteYou operates on a strict <strong>Zero-Knowledge Architecture</strong>.</p>
+    <h2>1. Privacy Policy & Data Security [cite: 7]</h2>
+    <p>At Note You, protecting your privacy and securing your data are core principles of our platform[cite: 8]. Our Services are designed using a privacy-focused, end-to-end encrypted architecture[cite: 9].</p>
     
-    <h3>1.1. Information We Collect</h3>
+    <h3>1.1 Information We Collect [cite: 10]</h3>
+    <p><strong>Account Information</strong> [cite: 11]<br>
+    When you create a cloud account, we may collect: [cite: 12]</p>
     <ul>
-      <li><strong>Account Information:</strong> When you register for cloud sync, we collect your email address to create and manage your account via Google Firebase.</li>
-      <li><strong>Device & Diagnostics Data:</strong> To improve app stability, we may automatically collect anonymous diagnostic data (e.g., app crash logs, device model, operating system version). This data contains no personally identifiable information and no note content.</li>
-      <li><strong>Content Data (Encrypted):</strong> If you use the sync feature, the encrypted ciphertext of your notes is stored on our servers. We do not collect or store unencrypted note data.</li>
+      <li>Email address [cite: 14]</li>
+      <li>Authentication-related identifiers provided through Firebase Authentication [cite: 15]</li>
     </ul>
+    <p>This information is used solely for account creation, authentication, synchronization, and customer support[cite: 16].</p>
 
-    <h3>1.2. End-to-End Encryption (E2EE) Mechanism</h3>
+    <p><strong>Diagnostic & Device Information</strong> [cite: 17]<br>
+    To improve application stability and performance, we may automatically collect limited technical information such as: [cite: 18]</p>
     <ul>
-      <li><strong>How It Works:</strong> When you secure your account, you create a personal <strong>Encryption PIN</strong>. Our app generates a cryptographic 'Salt' stored on our servers. Your local Encryption PIN combined with this Server Salt generates a secure <strong>Master Key</strong> directly on your device.</li>
-      <li><strong>Zero-Knowledge Proof:</strong> Your Encryption PIN is <strong>NEVER</strong> transmitted to, nor stored on, our servers. When you log out, the PIN and the Master Key are permanently wiped from your device's local memory.</li>
-      <li><strong>Absolute Privacy:</strong> Because we do not have your PIN, we cannot generate your Master Key. It is mathematically and technically impossible for us, our developers, or any third party to access, read, decrypt, or share your notes.</li>
+      <li>Device model [cite: 19]</li>
+      <li>Operating system version [cite: 20]</li>
+      <li>App version [cite: 21]</li>
+      <li>Crash logs and diagnostic reports [cite: 22]</li>
     </ul>
+    <p>This information does not include the contents of your notes[cite: 23].</p>
 
-    <h3>1.3. Incorrect PIN & Decryption Failures</h3>
-    <ul>
-      <li>If an incorrect Encryption PIN is entered, the system will mathematically generate an invalid Master Key. Consequently, your notes will fail to decrypt.</li>
-      <li>Because we do not store your PIN, <strong>the app cannot verify or notify you if the PIN is "wrong" prior to decryption.</strong> If an incorrect PIN is provided, your notes will simply not appear, or will remain as unreadable encrypted text. This is an intentional security design, not a software bug.</li>
-    </ul>
+    <p><strong>Encrypted Content Data</strong> [cite: 24]<br>
+    If cloud sync is enabled, encrypted versions of your notes ("ciphertext") may be stored on our servers[cite: 25]. We do not store readable or decrypted note content[cite: 26].</p>
 
-    <h3>1.4. Biometrics & Local Storage</h3>
-    <ul>
-      <li><strong>App Lock:</strong> If enabled, fingerprint or facial recognition data is processed entirely offline by your device's native hardware OS (Android). NoteYou does not collect, transmit, or store biometric data.</li>
-    </ul>
-
-    <h3>1.5. Third-Party Services</h3>
-    <ul>
-      <li><strong>Firebase:</strong> We use Google Firebase for secure authentication and to host the encrypted ciphertext. Firebase infrastructure complies with strict industry security standards.</li>
-      <li><strong>Razorpay:</strong> Premium payments are processed securely by Razorpay. We do not collect, process, or store your credit/debit card numbers, UPI IDs, or sensitive banking details.</li>
-    </ul>
-
-    <h3>1.6. Children's Privacy</h3>
-    <p>Our Services are not directed to individuals under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that a child under 13 has provided us with personal information, we will take steps to delete such information.</p>
-
-    <h2>2. Terms & Conditions</h2>
+    <h3>1.2 End-to-End Encryption (E2EE) [cite: 27]</h3>
+    <p><strong>How Encryption Works</strong> [cite: 27]<br>
+    When securing your account, you create a personal Encryption PIN[cite: 28]. A cryptographic salt associated with your account may be stored securely on our servers[cite: 29]. Your Encryption PIN, combined with this salt, is used locally on your device to derive an encryption key[cite: 30]. Your encryption keys are generated and used on your device only[cite: 31].</p>
     
+    <p><strong>Zero-Knowledge Design</strong> [cite: 32]<br>
+    Note You is designed so that we cannot access or read your decrypted notes[cite: 33]. Your Encryption PIN is never intentionally transmitted to or stored on our servers[cite: 34]. Because we do not possess your Encryption PIN or locally derived encryption keys, we are generally unable to recover or decrypt your note data[cite: 35].</p>
+
     <div class="highlight-box">
-      <p>CRITICAL LEGAL WARNING: NoteYou developers and administrators have NO ABILITY to recover, reset, bypass, or retrieve your Encryption PIN. If you forget your PIN, your encrypted data is permanently and irreversibly lost. We are not liable for any such data loss.</p>
+      <p><strong>Important Warning</strong> [cite: 36]<br>
+      If you forget your Encryption PIN, your encrypted data may become permanently inaccessible[cite: 37]. Please store your PIN securely[cite: 37].</p>
     </div>
 
-    <h3>2.1. User Responsibility & Data Loss</h3>
+    <h3>1.3 Incorrect PIN & Decryption Failures [cite: 38]</h3>
+    <p>Entering an incorrect Encryption PIN may generate an invalid encryption key, causing encrypted notes to fail decryption[cite: 39]. As Note You does not store or verify your Encryption PIN, the app may not be able to determine whether the entered PIN is incorrect before attempting decryption[cite: 40].</p>
+
+    <h3>1.4 Biometrics & Local Security [cite: 41]</h3>
+    <p>If App Lock or biometric authentication is enabled: [cite: 42]</p>
     <ul>
-      <li>By using NoteYou, you explicitly acknowledge and accept that <strong>YOU are solely responsible for remembering and safeguarding your Encryption PIN.</strong></li>
-      <li>We shall not be held liable for any loss of data, financial loss, emotional distress, or business interruption resulting from a forgotten PIN, lost device, hardware failure, app uninstallation without prior backup, or synchronization failure.</li>
-      <li>We are legally indemnified against any claims regarding inaccessible data due to user error, incorrect PIN entries, or lost credentials.</li>
+      <li>Fingerprint or facial recognition is processed locally by your device operating system[cite: 43].</li>
+    </ul>
+    <p>Note You does not collect, transmit, or store biometric information[cite: 44].</p>
+
+    <h3>1.5 Third-Party Services [cite: 45]</h3>
+    <p><strong>Firebase</strong> [cite: 46]<br>
+    We use Google Firebase for authentication, cloud infrastructure, and encrypted data storage[cite: 47].</p>
+
+    <p><strong>Razorpay/Google Play</strong> [cite: 48]<br>
+    Payments for premium subscriptions may be processed through Razorpay, Google Play, or other authorized payment providers[cite: 49]. We do not collect or store: [cite: 50]</p>
+    <ul>
+      <li>Credit/debit card numbers [cite: 51]</li>
+      <li>Banking credentials [cite: 52]</li>
+      <li>UPI PINS [cite: 53]</li>
+      <li>Sensitive payment authentication data [cite: 54]</li>
+    </ul>
+    <p>Payment processing is handled directly by the applicable payment provider under their respective privacy policies and security standards[cite: 55].</p>
+
+    <h3>1.6 Children's Privacy [cite: 56]</h3>
+    <p>Our Services are not intended for children under the age of 13[cite: 57]. We do not knowingly collect personal information from children under 13[cite: 58]. If we become aware that such information has been collected, we will take reasonable steps to delete it[cite: 58]. Parents or guardians who believe their child has provided personal information may contact us for assistance[cite: 59].</p>
+
+    <h2>2. Terms of Service [cite: 60]</h2>
+    
+    <h3>2.1 User Responsibility & Data Security [cite: 61]</h3>
+    <p>You are solely responsible for: [cite: 62]</p>
+    <ul>
+      <li>Maintaining access to your Encryption PIN [cite: 63]</li>
+      <li>Securing your devices and backups [cite: 64]</li>
+      <li>Maintaining access to your authentication credentials [cite: 65]</li>
+    </ul>
+    <p>Due to the encrypted nature of the Service, Note You may be unable to recover encrypted data if: [cite: 66, 67]</p>
+    <ul>
+      <li>You forget your Encryption PIN [cite: 68]</li>
+      <li>Your device is lost or damaged [cite: 69]</li>
+      <li>You uninstall the application without backup [cite: 70]</li>
+      <li>Synchronization fails due to external factors [cite: 71]</li>
+    </ul>
+    <p>To the maximum extent permitted by applicable law, Note You shall not be liable for loss of encrypted data resulting from user actions, forgotten credentials, device failures, or circumstances beyond our reasonable control[cite: 72].</p>
+
+    <h3>2.2 Intellectual Property [cite: 73]</h3>
+    <p><strong>Your Content</strong> [cite: 74]<br>
+    You retain ownership of all notes, text, and content you create using Note You[cite: 75].</p>
+
+    <p><strong>Our Services</strong> [cite: 76]<br>
+    All rights, title, and interest in the Note You application, branding, software, interface, design, and related intellectual property remain the exclusive property of Note You and its licensors[cite: 77]. You may not: [cite: 78]</p>
+    <ul>
+      <li>Copy [cite: 79]</li>
+      <li>Modify [cite: 80]</li>
+      <li>Reverse engineer [cite: 81]</li>
+      <li>Redistribute [cite: 82]</li>
+      <li>Sell [cite: 83]</li>
+      <li>Lease [cite: 84]</li>
+      <li>Exploit [cite: 85]</li>
+    </ul>
+    <p>any part of the Services except as permitted by law[cite: 86].</p>
+
+    <h3>2.3 Acceptable Use [cite: 87]</h3>
+    <p>You agree not to use Note You to: [cite: 88]</p>
+    <ul>
+      <li>Store or distribute unlawful material [cite: 89]</li>
+      <li>Upload malware or malicious code [cite: 90]</li>
+      <li>Violate intellectual property rights [cite: 91]</li>
+      <li>Attempt unauthorized access to systems or infrastructure [cite: 92]</li>
+      <li>Interfere with the operation or security of the Services [cite: 93]</li>
+    </ul>
+    <p>Violation of these terms may result in suspension or termination of access[cite: 94].</p>
+
+    <h3>2.4 Data Retention & Cloud Storage [cite: 95]</h3>
+    <p><strong>Free / Guest Users</strong> [cite: 96]<br>
+    Guest mode data may be stored locally on your device only[cite: 97]. Uninstalling the app or clearing app storage may permanently delete local data[cite: 98].</p>
+
+    <p><strong>Premium Users</strong> [cite: 99]<br>
+    If a premium subscription expires, encrypted cloud backups may remain available for up to 180 days[cite: 100]. After this retention period, encrypted cloud data may be permanently deleted from our servers[cite: 101]. Local data stored on your device is not automatically removed[cite: 102].</p>
+
+    <h3>2.5 Suspension & Termination [cite: 103]</h3>
+    <p>We reserve the right to suspend or terminate access to the Services if: [cite: 104]</p>
+    <ul>
+      <li>These terms are violated [cite: 105]</li>
+      <li>Fraudulent or abusive activity is detected [cite: 106]</li>
+      <li>Required by law [cite: 107]</li>
+      <li>Necessary to protect platform security or users [cite: 108]</li>
+    </ul>
+    <p>Upon termination, your right to access and use the Services will cease immediately[cite: 109].</p>
+
+    <h3>2.6 Disclaimer of Warranties [cite: 110]</h3>
+    <p>The Services are provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, whether express, implied, or statutory[cite: 111]. We do not guarantee that: [cite: 112]</p>
+    <ul>
+      <li>The Services will be uninterrupted or error-free [cite: 113]</li>
+      <li>The Services will be compatible with all future devices or operating systems [cite: 114]</li>
+      <li>The Services will be completely secure against every possible cyber threat or vulnerability [cite: 115]</li>
+    </ul>
+    <p>Use of the Services is at your own risk[cite: 116].</p>
+
+    <h3>2.7 Limitation of Liability [cite: 117]</h3>
+    <p>To the maximum extent permitted by applicable law, Note You and its affiliates shall not be liable for any: [cite: 118]</p>
+    <ul>
+      <li>Indirect damages [cite: 119]</li>
+      <li>Incidental damages [cite: 120]</li>
+      <li>Consequential damages [cite: 121]</li>
+      <li>Loss of data [cite: 122]</li>
+      <li>Business interruption [cite: 123]</li>
+      <li>Financial losses [cite: 123]</li>
+    </ul>
+    <p>arising from use of the Services[cite: 124]. Our total liability for any claim related to the Services shall not exceed the amount paid by you for Note You Premium during the previous 12 months, or INR 20 if no payment was made[cite: 125].</p>
+
+    <h3>2.8 Governing Law & Jurisdiction [cite: 126]</h3>
+    <p>These Legal Policies shall be governed by the laws of India[cite: 127]. Any disputes arising from or related to these Policies or the Services shall be subject to the exclusive jurisdiction of the courts located in New Delhi, India[cite: 128].</p>
+
+    <h2>3. Refund & Cancellation Policy [cite: 129]</h2>
+    
+    <h3>3.1 Subscription Cancellation [cite: 130]</h3>
+    <p>You may cancel your subscription at any time to prevent future recurring charges[cite: 131]. After cancellation: [cite: 132]</p>
+    <ul>
+      <li>Premium access will remain active until the end of the current billing cycle[cite: 134].</li>
+      <li>No additional charges will be applied unless you renew[cite: 135].</li>
     </ul>
 
-    <h3>2.2. Intellectual Property</h3>
+    <h3>3.2 Refund Policy [cite: 136]</h3>
+    <p>Except where required under applicable law or platform policies, purchases of Note You Premium are non-refundable and non-transferable[cite: 137]. We encourage users to evaluate the free version of the app before purchasing premium features[cite: 138].</p>
+
+    <h2>4. Changes to These Policies [cite: 139]</h2>
+    <p>We may update or modify these Legal Policies from time to time[cite: 140]. If material changes are made, we may provide notice through: [cite: 141]</p>
     <ul>
-      <li><strong>Your Content:</strong> You retain all rights and ownership to the text, notes, and content you create within NoteYou.</li>
-      <li><strong>Our App:</strong> NoteYou, including its code, design, logos, and UI/UX, is the exclusive intellectual property of the NoteYou developers. You may not copy, modify, distribute, sell, or lease any part of our application.</li>
+      <li>The application [cite: 142]</li>
+      <li>Email notifications [cite: 143]</li>
+      <li>Website announcements [cite: 144]</li>
     </ul>
+    <p>Continued use of the Services after updated policies become effective constitutes acceptance of the revised terms[cite: 145].</p>
 
-    <h3>2.3. Acceptable Use Policy</h3>
+    <h2>5. Contact Information [cite: 146]</h2>
+    <p>For support, legal inquiries, or privacy-related questions, please contact: [cite: 147]</p>
     <ul>
-      <li>You agree to use NoteYou only for lawful purposes. You must not use the app to store, distribute, or promote illegal content, malware, or material that violates the rights of others.</li>
-      <li>Attempting to reverse-engineer, decompile, hack, or disrupt the app's server infrastructure will result in immediate termination of your account and potential legal action.</li>
-    </ul>
-
-    <h3>2.4. Data Retention, Expiry, & Wiping</h3>
-    <ul>
-      <li><strong>Free/Guest Users:</strong> Notes are stored locally. If you uninstall the app or clear app data without setting up a cloud account, your data is permanently deleted.</li>
-      <li><strong>Premium Users (Grace Period):</strong> If your NoteYou Premium subscription expires, we will safely hold your encrypted cloud data for a grace period of <strong>180 days</strong>. On the 181st day, your cloud backup will be permanently wiped from our servers. Local data on your device will remain untouched.</li>
-    </ul>
-
-    <h3>2.5. Termination of Service</h3>
-    <p>We reserve the right to suspend or terminate your access to NoteYou at any time, without prior notice or liability, for any reason, including but not limited to a breach of these Terms. Upon termination, your right to use the Service will immediately cease.</p>
-
-    <h3>2.6. Disclaimer of Warranties & Limitation of Liability</h3>
-    <ul>
-      <li><strong>"AS IS" Clause:</strong> NoteYou is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</li>
-      <li>We do not guarantee that the app will be completely error-free, secure from all cyber threats, uninterrupted, or perfectly compatible with all future Android OS updates.</li>
-      <li><strong>Limitation of Liability:</strong> To the maximum extent permitted by applicable law, in no event shall NoteYou, its creator(s), affiliates, or partners be liable for any indirect, incidental, special, consequential, or punitive damages. Our total liability to you for any claims arising from your use of the app shall not exceed the amount you paid for the app's premium features in the past 12 months, or $0 if no purchase was made.</li>
-    </ul>
-
-    <h3>2.7. Governing Law & Jurisdiction</h3>
-    <p>These Legal Policies shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions. Any legal disputes arising out of or related to the use of NoteYou shall be subject to the exclusive jurisdiction of the courts located in New Delhi, India.</p>
-
-    <h2>3. Refund & Cancellation Policy</h2>
-    <ul>
-      <li><strong>No Refunds:</strong> NoteYou operates on a strict <strong>No Refund Policy</strong>. All purchases made for NoteYou Premium (via Razorpay, Google Play, or any other payment gateway) are final, non-refundable, and non-transferable.</li>
-      <li><strong>Try Before You Buy:</strong> We provide a fully functional free version (Guest Mode/Basic Account) so users can thoroughly test the app's core features, user interface, and performance before purchasing Premium. By making a purchase, you acknowledge that you are satisfied with the app's current functionality.</li>
-      <li><strong>Cancellations:</strong> You may cancel your active subscription at any time to prevent future recurring billing. However, no prorated refunds will be issued for unused time in the current billing cycle. You will retain access to premium features until the end of your current paid period.</li>
-    </ul>
-
-    <h2>4. Changes to These Policies</h2>
-    <p>We reserve the right to modify or replace these Legal Policies at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. Continued use of the NoteYou app after any such changes constitutes your binding acceptance of the new terms.</p>
-
-    <h2>5. Contact Information</h2>
-    <p>If you have any questions, disputes, or require support regarding your account, privacy, or premium purchase, please contact us:</p>
-    <ul>
-      <li><strong>Email:</strong> <a href="mailto:noteyouapp@gmail.com">noteyouapp@gmail.com</a></li>
-      <li><strong>GitHub Profile:</strong> <a href="https://github.com/kyrox-official" target="_blank">github.com/kyrox-official</a></li>
+      <li>Email: noteyouapp@gmail.com [cite: 148]</li>
+      <li>GitHub Profile: github.com/kyrox-official [cite: 148]</li>
+      <li>Website: <a href="https://kyrox-official.github.io/noteyou-website/" target="_blank">https://kyrox-official.github.io/noteyou-website/</a> [cite: 149]</li>
     </ul>
   </div>
 </div>
